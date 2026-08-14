@@ -13,6 +13,7 @@
 <p>
   <a href="#-why-this-is-embodied-intelligence">Why</a> ·
   <a href="#-hardware-stack">Hardware</a> ·
+  <a href="#-how-so-101-works--core-principles">Principles</a> ·
   <a href="#-software-stack">Software</a> ·
   <a href="#-the-teleoperation-loop">Teleop</a> ·
   <a href="#-full-pipeline">Pipeline</a> ·
@@ -53,8 +54,8 @@ Its key difference from "ordinary AI" (which only processes pixels or text): **t
 | Ordinary AI | Embodied AI |
 |---|---|
 | Input: image / text | Input: **camera pixels + joint angles (proprioception)** |
-| Output: label / sentence | Output: **motor commands (torque / target angle)** |
-| Lives in a server | **Lives on a physical body** in the real world |
+| Output: label / sentence | Output: **motor commands (target angle / torque)** |
+| Lives in a server | **lives on a physical body** in the real world |
 | No consequence of error | Error = the arm hits itself |
 
 The SO-101 pipeline *is* this loop made physical: cameras sense → ACT decides → servos act → cameras sense again.
@@ -86,7 +87,7 @@ Open-source, desktop-class, 6-DOF, ideal for imitation-learning data collection.
 | DOF | **6 DOF** | 5 arm joints + 1 gripper |
 | Actuator | Feetech **STS3215** serial-bus servo | 12-bit magnetic encoder, daisy-chain |
 | Reach | ~500 mm | base → gripper tip |
-| Payload | ~250–500 g | enough for soft grasping |
+| Payload | ~500 g | light objects — enough for soft grasping |
 | Weight | ~800 g | PLA structure |
 | Joints | all revolute | URDF open → MuJoCo / PyBullet sim |
 | Comm | USB serial `/dev/ttyACM*` | bus baud 1 Mbps |
@@ -140,6 +141,77 @@ The two arms look identical (both 6-joint) and joints pair 1-to-1, but they are 
 
 ---
 
+## 🔬 How SO-101 Works — Core Principles (Deep Dive)
+
+> This section explains *why* the arm moves the way it does. Read it before you touch a servo — every later command only makes sense once these five principles click.
+
+### ① Servo principle — a "smart motor in a box"
+
+A **servo** is not just a motor. The Feetech **STS3215** is a *serial-bus digital servo*: inside one small package live four things:
+
+- a **DC motor** (spins when powered),
+- a **gearbox** (slows the spin, multiplies torque → the output shaft turns slowly but strongly),
+- a **magnetic encoder** (a 12-bit sensor that always knows the *exact* angle of the output shaft — like a tiny compass glued to the axle),
+- a **control circuit** (reads commands, compares the current angle to the target angle, drives the motor).
+
+It runs in **position-control mode**: you send it a *target angle* (e.g. "go to 30°"); an internal **PID controller** keeps pushing the motor until the encoder reads 30°, then holds it there against gravity or a light push. You never command "spin forward" — you command "be at angle X", and the servo figures out the rest. This is why the arm can *hold a pose* on its own, without you holding it.
+
+> 💡 *The encoder is the secret.* Because the servo always knows its own angle, the board can ask "where are you?" and get a precise number back. That number **is** the robot's **proprioception** — its sense of self.
+
+### ② Serial-bus communication — one wire, many servos
+
+Old-school hobby servos need one PWM wire *per* motor. SO-101 uses a **serial bus** instead:
+
+- All six servos hang on **one 3-wire bus**: red = VCC (power), black = GND (ground), yellow/white = DATA.
+- DATA is a **half-duplex UART** line — the board and the servos take turns talking on the same wire (like a walkie-talkie, not a phone call).
+- Each servo has a **unique ID** (1, 2, 3 …). A packet says "ID 3, go to 45°"; only servo 3 reacts, the others stay silent.
+- The bus runs at a high baud rate (≈ **1 Mbps** for the STS3215 servo bus), so reading and writing all six joints takes only milliseconds.
+
+Why this matters: with one bus you control six (or more) joints from a single serial port — far simpler wiring than six separate PWM lines, and you also get **feedback** (angle, temperature, voltage, load) for free.
+
+```
+   S600 serial port
+        │  (one 3-wire bus, half-duplex UART)
+        ├──► [ID1] servo  ┐
+        ├──► [ID2] servo  │  addressed by ID,
+        ├──► [ID3] servo  │  only the called one answers
+        ├──► ...          ┘
+        └──► [ID6] servo
+```
+
+### ③ 6-DOF kinematics — how angles become a gripper pose
+
+The arm is a chain of **six revolute (purely rotating) joints** in series. Given the six joint angles, a bit of math — **forward kinematics** — tells you exactly **where the gripper is and how it is tilted** in 3-D space.
+
+- 5 arm joints position & orient the hand; 1 gripper joint opens/closes.
+- **6 DOF = 3 to place (x, y, z) + 3 to orient (roll, pitch, yaw)** — the minimum needed to put a gripper anywhere, any way, on a table. That is why 6-DOF is the *standard* for tabletop manipulation.
+- All joints are **revolute** (pure rotation), so the arm is a simple, well-understood kinematic chain — easy to simulate (URDF → MuJoCo / PyBullet) and to control.
+
+### ④ Leader–Follower teaching — "show, don't program"
+
+The two arms are **physically identical** and their joints pair 1-to-1 (leader `shoulder_pan` ↔ follower `shoulder_pan`, …). They are **not bolted together** — both plug into the S600, which couples them in software.
+
+- **Leader:** you grasp and move it by hand. Its servos run in a *compliant / torque-off* mode — they don't fight you, they just **report** their angles. It is a *sensor*.
+- **Follower:** its servos run in *high-torque position-control* mode. The S600 copies the leader's angle vector and writes it as the follower's target → the follower **mirrors** your hand motion. It is an *actuator*.
+
+This is called **kinesthetic teaching**: the human demonstrates the task by moving the leader; the follower records the paired angles. No code, no trajectory math — you *show* the robot what to do.
+
+### ⑤ Vision & the closed loop — why it becomes "autonomous"
+
+- **Cameras** are pure sensors: each turns light into a pixel matrix. The **top camera** sees the whole scene from above; the **wrist camera** sees the gripper's near view (egocentric). Two views = a better grasp. The camera *never thinks* — it only supplies pixels.
+- Once ACT is trained, the **whole system is one high-frequency closed loop**:
+
+```
+   sense ──► decide ──► act ──► (world changes) ──► sense …
+   cameras+encoders → ACT model → target angles → servos move → cameras again
+```
+
+Because actuation is **position-control** (ACT outputs target joint angles, servos PID to them), ACT's native interface *is* exactly what SO-101 speaks — which is why ACT fits this hardware so naturally.
+
+> ⚑ *One sentence to remember:* **servo = smart angle-holder; bus = one wire talks to all by ID; 6 joints = math places the gripper; leader shows, follower copies; cameras+model close the loop.** That is the entire "principle" of SO-101.
+
+---
+
 ## 💻 Software Stack
 
 | Tool | Role | Why it matters |
@@ -167,7 +239,7 @@ leader ──► S600 ──► follower
 (30–50 Hz)
 ```
 
-1. **READ:** S600 sends `read ID:1` on bus A; leader servo 1 replies `30°`; read all 6 joints → `[30°,45°,10°,…]`
+1. **READ:** S600 sends `read ID:1` on bus A; leader servo 1 replies `120°`; read all 6 joints → `[120°,45°,10°,…]`
 2. **COPY:** use that angle vector directly as the follower's 6-joint target
 3. **SEND:** S600 sends `write ID:1→30°…` on bus B; follower servos PID to target and lock
 
@@ -217,14 +289,14 @@ No more bending. Closed loop: live frame + state → model → action → follow
 
 ## 🧬 ACT Deep Dive
 
-**ACT (Action Chunking Transformer)** — imitation-learning algorithm from Stanford's **Aloha** project. Core problem: let a manipulator learn *smooth, robust* manipulation from *few* demonstrations.
+**ACT (Action Chunking Transformer)** — imitation-learning algorithm from Stanford's **Aloha** project (Zhao et al., RSS 2023). Core problem: let a manipulator learn *smooth, robust* manipulation from *few* demonstrations.
 
 <div style="background:linear-gradient(135deg,#EEF2FF,#C7D2FE); padding:16px 20px; border-radius:14px; border:2px solid #6366F1;">
 
 **Input → Output**
 - **Image in:** top + wrist camera → vision backbone (ResNet / DinoViT) features
 - **Proprioception in:** 6 joint angles (the arm's "self-feeling")
-- **Output:** a **chunk** of future actions (e.g. next 30 steps of target angles)
+- **Output:** a **chunk** of future actions (e.g. next 100 steps of target angles ≈ 2 s at 50 Hz; use a smaller chunk like 20–50 for fast-reactive tasks)
 
 </div>
 
@@ -233,6 +305,9 @@ No more bending. Closed loop: live frame + state → model → action → follow
 1. **⚑ Action Chunking** — predict a *sequence* of future actions at once, not step-by-step. Avoids **compounding error** (one wrong step cascades); motion stays coherent, not jittery.
 2. **⚑ CVAE head** — one view often has multiple valid solutions (grab left / grab right). VAE models this *multimodality* into a latent variable → more natural motion. Train: encode demo actions; infer: sample latent → decode action.
 3. **⚑ Transformer backbone** — self/cross-attention fuses *dual-camera images + joint state* (heterogeneous inputs) into global context.
+
+### Temporal ensembling (why motion stays smooth)
+**Temporal ensembling** is what makes ACT motion buttery-smooth at execution time. The model re-predicts a full *k*-step chunk every control cycle, so at any instant it holds several *overlapping* chunks. Instead of blindly executing only the newest chunk, ACT **averages** the predictions for the current timestep across all overlapping chunks (newest weighted highest). This smooths the seams between chunks and kills the jitter you would otherwise see at chunk boundaries — the robot does not "stutter" when one chunk ends and the next begins.
 
 ### Training mechanics
 - Paradigm: **Behavior Cloning (BC)** — treat demos as supervised `(obs, action)` labels.
@@ -333,13 +408,13 @@ Package the bootcamp as one tellable project. Interviewers want: *what you did, 
 **Interview Q&A you must own:**
 - *How do leader/follower sync?* → both on S600; board reads leader & writes follower ~30–50 Hz; bus addressed by servo ID; not physically linked.
 - *Why 12V follower / 5V leader?* → follower needs torque to grasp; leader needs compliance to be guided; reverse = burnout.
-- *Why ACT > plain IL?* → chunking stops error cascade + CVAE handles multimodality + Transformer fuses views.
+- *Why ACT > plain IL?* → chunking stops error cascade + CVAE handles multimodality + Transformer fuses views + temporal ensembling smooths motion.
 - *How does the camera "know" the arm?* → it only outputs pixels; the model learns the (frame,action) association from data.
 
 ---
 
 ## 🚀 What's next
 
-Port this IL pipeline onto **DEA (Dielectric Elastomer Actuator)** soft actuators — self-sensing → policy → voltage. That is where soft-relative bodies meet learning **brain**.
+Port this IL pipeline onto **soft actuators** — compliance control → policy → gentle contact. That is where soft-robotics **body** meets learning **brain**.
 
 <sub>Built from a real Xbotics bootcamp report. Last updated 2026-08-15.</sub>
