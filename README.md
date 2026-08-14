@@ -37,7 +37,7 @@ Everything here is written from real, hands-on experience (a two-day on-site rob
 | Project | What it is | Status |
 |---|---|---|
 | **[`so101-act/`](so101-act/README.md)** | Full pipeline: SO-101 dual-arm + D-Robotics S600 + LeRobot + ACT imitation learning, run on **real hardware** | ✅ Complete |
-| `soft-gripper-il` | (Planned) Soft gripper + force/tactile feedback + ACT — bridging to DEA soft-robotics research | 🔜 Soon |
+| `soft-gripper-il` | (Planned) Soft gripper + force/tactile feedback + ACT — bridging to soft-robotics research | 🔜 Soon |
 
 ## 🗺️ Roadmap
 
@@ -51,7 +51,7 @@ Everything here is written from real, hands-on experience (a two-day on-site rob
 ## 👤 Author
 
 **Zizheng Wang** — MSc candidate, Mechanical Engineering, Zhejiang University.
-Background in soft robotics / DEA (Dielectric Elastomer Actuators); currently building toward the intersection of **soft bodies + embodied AI**.
+Background in soft robotics; currently building toward the intersection of **soft bodies + embodied AI**.
 
 <p>
   <a href="https://github.com/zizhengwang2026">GitHub</a> ·
