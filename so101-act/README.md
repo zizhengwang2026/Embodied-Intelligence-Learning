@@ -38,7 +38,7 @@ A robotic arm that **sees an object with cameras and grasps it autonomously** �
 
 This is the canonical **perceive → decide → act** embodied-AI loop, executed on **physical hardware**, not a simulation.
 
-> ⚑ *Not a tutorial you watch. A pipeline you run. Every command, voltage, and error below came from a real two-day bootcamp.*
+> ⚑ *Not a tutorial you watch. A pipeline you run. Every command, voltage, and error below are from a real two-day bootcamp.*
 
 ---
 
@@ -294,10 +294,6 @@ Plain BC predicts *single-step* actions → easily suffers compounding error →
 **Fix:** re-download **aarch64** build; if half-installed, `rm -rf ~/miniconda3` then reinstall.
 </details>
 
-<details style="border:1px solid #e2e8f0; border-radius? no">
-
-</details>
-
 <details style="border:1px solid #e2e8f0; border-radius:10px; padding:8px 14px; margin:8px 0;">
 <summary><b>🔥 <code>scp</code> folder fails "is not a regular file"</b></summary>
 
@@ -344,6 +340,6 @@ Package the bootcamp as one tellable project. Interviewers want: *what you did, 
 
 ## 🚀 What's next
 
-Port this IL pipeline onto **DEA (Dielectric Elastomer Actuator)** soft actuators — self-sensing → policy → voltage. That is where soft-robotics **body** meets learning **brain**.
+Port this IL pipeline onto **DEA (Dielectric Elastomer Actuator)** soft actuators — self-sensing → policy → voltage. That is where soft-relative bodies meet learning **brain**.
 
 <sub>Built from a real Xbotics bootcamp report. Last updated 2026-08-15.</sub>
