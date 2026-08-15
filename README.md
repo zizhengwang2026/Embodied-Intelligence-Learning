@@ -32,6 +32,8 @@ Everything here is written from real, hands-on experience (a two-day on-site rob
 
 > 💡 *"Embodied intelligence is the discipline of the body. You cannot learn it by reading papers — you have to bend a servo with your own hands."*
 
+> 🚀 **My end-to-end embodied-intelligence journey (the red thread of this repo):** I ran the *whole* stack on real SO-101 hardware — **environment → flashing firmware → wiring → calibration → teleoperation & data collection → imitation learning (BC) → ACT / Diffusion-Policy algorithms → real-hardware deployment & on-site debugging**. The [`so101-act/`](so101-act/README.md) project documents every single stage.
+
 ## 📦 Projects in this repo
 
 | Project | What it is | Status |
