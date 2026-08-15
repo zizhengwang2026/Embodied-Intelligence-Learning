@@ -108,7 +108,7 @@ The robot's **"brain computer"** — runs the model, talks to servos, receives c
 | Arch | ARM **aarch64** (64-bit ARM) | Must install **aarch64** Miniconda — x86 build won't run (real pitfall) |
 | OS | RDK OS (custom Linux, real-time rt-patch) | Real-time matters for robot control |
 | Role | Run LeRobot, load ACT, do inference | All training/inference here; your laptop is just a display |
-| I/O | UART (servo bus) · USB (cameras) · Ethernet/WiFi (SSH) | Two media differ: PC↔S600 = network(SSH), S600↔servo = UART wire |
+| I/O | UART (servo bus) · USB (cameras) · Ethernet/WiFi (SSH) | Two media differ: PC↔S⁻S600 = network(SSH), S600↔servo = UART wire |
 | AI accel | On-board BPU/NPU | Faster than CPU for real-time vision policy |
 
 **Field milestone:** `XBurn` flash `product.zip` (~7.9 GB firmware) → board reboots → SSH in (MobaXterm / VS Code / serial `plink`) → run LeRobot. That *is* a micro embedded-deployment exercise.
@@ -168,7 +168,13 @@ The two arms look identical (both 6-joint) and joints pair 1-to-1, but they are 
 
 > This is the part most tutorials skip. A wrong wire = a burned servo. Below is the **physical topology** and the **step-by-step order I followed** on the bench.
 
-### Physical wiring topology
+### Wiring topology at a glance
+
+![SO-101 x D-Robotics S600 wiring topology](wiring.svg)
+
+*Figure 1 — PC ↔ S600 over SSH; S600 ↔ cameras over USB; S600 ↔ arms over the 3-wire UART servo bus (leader = 5V, follower = 12V). Full source: `wiring.svg`.*
+
+### Physical wiring topology (text fallback)
 
 ```text
                     ┌──────────────────────────────────────────┐
@@ -352,7 +358,7 @@ Each STS3215 has a **12-bit magnetic encoder** — always knows its own angle. S
 
 For a two-day bootcamp, **IL is the only realistic choice** — you can collect dozens of good demos in an afternoon, whereas RL would need thousands of real trials.
 
-### Behavior Cloning (BC) — the simplest IL
+### Behavior Cloning — the simplest IL
 BC is supervised learning applied to robotics:
 - You have a dataset of demonstrations `D = {(o_i, a_i)}`, where `o_i` = observation (camera frames + joint state) and `a_i` = the action the expert took.
 - Train a policy `π(a | o)` to **minimize the prediction error** between its action and the demo action (e.g. MSE).
