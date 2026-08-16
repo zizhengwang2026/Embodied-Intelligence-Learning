@@ -16,7 +16,7 @@
 
 <p>
   <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="license"/>
-  <img src="https://img.shields.io/badge/last%20updated-2026--08--15-blue?style=flat-square" alt="updated"/>
+  <img src="https://img.shields.io/badge/last%20updated-2026--08--16-blue?style=flat-square" alt="updated"/>
   <img src="https://img.shields.io/badge/language-English-8B5CF6?style=flat-square" alt="lang"/>
   <img src="https://komarev.com/ghpvc/?feed=zizhengwang2026-embodied-intelligence" alt="views"/>
 </p>
@@ -50,6 +50,7 @@ A structured **60-day learning track** built on the 黑马程序员《具身智�
 - **Lecture notes (`study-log/`):**
   - [Lecture 01 — What is Embodied Intelligence? (EN)](study-log/2026-08-15-lecture-01-en.md) · [中文](study-log/2026-08-15-lecture-01-zh.md)
   - [Lecture 02 — Actuators, Gears, Sensors & 3D Printing (EN)](study-log/2026-08-15-lecture-02-en.md) · [中文](study-log/2026-08-15-lecture-02-zh.md)
+  - [Lecture 03 — Virtual Simulation & URDF (EN)](study-log/2026-08-16-lecture-03-en.md) · [中文](study-log/2026-08-16-lecture-03-zh.md)
 
 ## 🗺️ Roadmap
 
@@ -71,4 +72,4 @@ Background in soft robotics; currently building toward the intersection of **sof
   <a href="https://blog.csdn.net/ZizhengWang2023">Blog</a>
 </p>
 
-<sub>Built with curiosity. Last updated 2026-08-15.</sub>
+<sub>Built with curiosity. Last updated 2026-08-16.</sub>
