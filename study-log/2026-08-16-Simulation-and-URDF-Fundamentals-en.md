@@ -117,6 +117,8 @@ Line by line:
 - `<axis xyz="0 0 1"/>` = rotate around the Z axis (the "hinge axis"); you'll see this line constantly when you hit kinematics (Day 12–16).
 
 > Remember this minimal skeleton: **robot cover → link (part) → joint (parent/child + type + axis + origin)**. Day 4 (018–022) fills in every sub-tag (visual / collision / inertial).
+>
+> ⚠️ Note: per the URDF spec a `revolute` joint **must** carry a `<limit>` (angle lower/upper + effort/velocity) or the parser rejects it. This example omits it on purpose so you only learn the skeleton — don't forget it when you actually write one (Day 4's full example includes it).
 
 ---
 
