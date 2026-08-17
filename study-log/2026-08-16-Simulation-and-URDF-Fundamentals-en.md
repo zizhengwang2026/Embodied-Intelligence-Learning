@@ -48,6 +48,10 @@ You've played a racing game, right? When the car in the game hits a wall, nothin
 
 > Simulation is like a "driving school simulator" — it teaches you the throttle and brake, but **the real-world wind, rain, and the car ahead slamming its brakes are things the simulator can't give you**. So after practicing in simulation, you still need to grind on the real machine. Don't assume "passed simulation = all good."
 
+<mark>**📌 Slide supplement 1 | From "simulation" to "digital twin".** Traditional simulation focuses on a *specific process*, local and offline, for analysis/verification (e.g. stress analysis of one gear); a **digital twin** focuses on a *complete entity*, global and real-time synchronized — a **dynamic virtual replica** of a physical thing, with not just the same geometry but the same physics, and able to receive sensor data (sensing) and respond to commands (actuation). In industry GE builds a digital twin per aircraft engine for fault prediction; NASA builds a Mars-rover digital twin to simulate the Martian environment on Earth. What we do in this course is exactly that: build a digital twin of our physical arm as the main development/test platform.</mark>
+
+<mark>**📌 Slide supplement 2 | Simulation's three values + the data bottleneck.** ① **Cut cost** — real robots are expensive; in simulation you can "blow up" countless virtual robots for free; ② **Ensure safety** — prevent algorithm bugs from breaking hardware or hurting people, and test extreme cases; ③ **Boost efficiency** — run hundreds of experiments in parallel 24/7, change an arm-length/torque parameter in seconds. One level deeper: modern AI is a "data glutton" — a grasping model needs **millions of interaction samples**, and a real robot would take years (and die first) to grab a million times — **simulation is an "infinite data generator"** and the ideal training ground for reinforcement learning (billions of trial-and-error in hours). Hence the accepted best paradigm: **"99% train in simulation at scale + 1% fine-tune and deploy in reality."**</mark>
+
 ### 1.3 What is URDF? — the robot's "IKEA manual"
 
 URDF = **U**nified **R**obot **D**escription **F**ormat. Scary name, but it's just **an "assembly manual for the robot" written in XML (a markup language the computer can read)**.
@@ -73,6 +77,8 @@ URDF has only two basic building blocks:
   - **fixed**: welded, completely still. → used when gluing two parts together.
 
 > A link is a "bone," a joint is the "connection type and range of motion between bones." A robot = a bunch of bones (links) assembled with different connection types (joints).
+
+<mark>**📌 Slide supplement | Tree structure + parent-child + kinematic chain (URDF's core worldview).** A robot model is a **tree structure** of Links connected by Joints, with two hard rules: **there must be one root Link, and closed loops are forbidden**. Every Joint connects a parent and a child: **parent Link + child Link** — this defines the direction of frame transformation. For example, the elbow connects "upper arm" and "forearm": upper arm is the parent, forearm is the child — we describe "the forearm's position and motion relative to the upper arm." This parent-child chain propagates level by level from the root Link and finally forms the robot's **kinematic chain**. Human analogy: torso → upper arm → forearm → hand is a "bone tree" growing down from the root.</mark>
 
 ### 1.5 What does one link actually need? — four things (key point of episode 017)
 
@@ -198,4 +204,4 @@ flowchart LR
 ### References (for later, not required today)
 - Course episodes 013–017 (黑马程序员《具身智能》223-ep version).
 - (Later) Day 4–5 will hand-write URDF tags and run the Node.js simulator; Day 17–20's PID will fill the "controller" box in this simulation loop.
-- Extended thought: the difference between soft-robot simulation (finite element / soft-body physics) and standard URDF — a research entry point.
+- Extended thought: the difference between soft-robot simulation (finite element / soft-body physics) and standard URDF — a research entry point.</content>
