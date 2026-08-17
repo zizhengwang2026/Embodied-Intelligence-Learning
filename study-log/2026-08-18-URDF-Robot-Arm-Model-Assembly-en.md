@@ -23,6 +23,8 @@
 | 025 | 构建机械臂的其他的joint和link (Build the rest) | upper arm → forearm → wrist → gripper; each joint has its own axis and origin, chained one by one |
 | 026 | urdf仿真创建的细节问题 (Sim creation details) | frame alignment, inertia, joint limits, naming — check these after assembling |
 
+<mark>**📌 Slide supplement | URDF's "Unified" value: define once, use everywhere.** The **Unified** in URDF is its soul — once you define a robot in URDF, in principle that model can be loaded by almost all mainstream robot software and simulators: **ROS, Gazebo, PyBullet, Isaac Sim, MuJoCo, Three.js**… the same model runs on any platform. That's the power of "define once, use everywhere": you don't re-model for each simulator. It's also why the course builds the digital twin with a web stack (Three.js) + URDF — model and renderer are decoupled; swap the renderer, keep the model.</mark>
+
 ### 1.1 The base component (023)
 
 - base = the base, the **root** of the kinematic chain — it has **no parent**.
@@ -151,5 +153,4 @@ flowchart TD
 
 ### References (for later, not required today)
 - Course episodes 023–026 (黑马程序员《具身智能》223-ep version).
-- ROS wiki URDF tutorial's "building a movable model" section (the official multi-joint example).
-- (Later) Day 6 returns to real hardware; Day 12–16's kinematics turns each joint angle of this chain into an end position.
+- ROS wiki URDF tutorial's "building a movable model" section (the official multi-joint example).</content>
