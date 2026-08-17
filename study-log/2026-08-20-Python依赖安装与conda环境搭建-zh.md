@@ -10,7 +10,7 @@
 
 ## 0. 一句话总结
 
-> **不同项目要不同的 Python 环境**——一个项目用的 NumPy 是 1.x，另一个项目要 2.x，全装一起必打架。**miniconda = 轻量版的 Anaconda**，帮你一台电脑装**多套隔离的 Python 环境**，互不污染。**常用四条指令：`create` 建环境、`activate` 进环境、`install` 装包、`deactivate` 退出**。**别在 `base` 里乱装包、pip 和 conda 别混用**，否则依赖关系迟早崩。
+> **不同项目要不同的 Python 环境**——一个项目用的 NumPy 是 1.x，另一个项目要 2.x，全装一起必打架。**miniconda = 轻量版的 Anaconda**，帮你一台电脑装**多套隔离的 Python 环境**，互不污染。**核心四条指令：`create` 建环境、`activate` 进环境、`install` 装包、`deactivate` 退出（完整七条见 §1.3）**。**别在 `base` 里乱装包、pip 和 conda 别混用**，否则依赖关系迟早崩。
 
 ---
 
@@ -37,7 +37,7 @@
 
 ### 1.2 miniconda 是啥——为什么不用 Python 自带的
 
-**Python 自带版本**：直接装 python.org 的 .exe → 默认装到 `/usr/bin/python`（或 Windows 的 `C:\Python39\`）。问题：
+**Python 自带版本**：直接装 python.org 的 .exe → 装到一个固定的系统/用户目录（Linux 如 `/usr/bin/python`，Windows 默认在用户目录 `%LocalAppData%\Programs\Python\`）。问题：
 - 只有一个 Python；
 - 全局 site-packages，多个项目共享；
 - 装 A 项目要 numpy 2.x，装 B 项目要 1.x → **必打架**。
@@ -53,7 +53,7 @@
 | 指令 | 干嘛 |
 |---|---|
 | `conda create -n <名字> python=3.10` | 建一个名叫 `<名字>`、用 Python 3.10 的新环境 |
-| `conda activate <名字>` | 进入这个环境（Windows：`activate`；macOS/Linux：同左） |
+| `conda activate <名字>` | 进入这个环境（conda 4.6+ 各平台统一 `conda activate`） |
 | `conda deactivate` | 退出当前环境，回到 base |
 | `conda install <包名>` | 在当前环境里装包 |
 | `conda list` | 看当前环境装了哪些包 |
@@ -97,17 +97,17 @@ python -c "import numpy; print(numpy.__version__)"  # 验证
 ```mermaid
 flowchart TD
     A[anaconda3/<br>miniconda3 安装目录]
-    A --> B[envs/base/<br>Python + conda 自身]
+    A --> B[安装根目录本身<br>（就是 base 环境）<br>Python + conda 自身]
     A --> C[envs/embodied/<br>Python 3.10 + numpy + torch + opencv]
-    A --> D[envs/ml-exp/<br>Python 3.11 + jupyter + sklearn]
+    A --> D[envs/ml-experiment/<br>Python 3.11 + jupyter + sklearn]
     B -->|conda activate base| P1[左下角: base]
     C -->|conda activate embodied| P2[左下角: embodied]
-    D -->|conda activate ml-exp| P3[左下角: ml-exp]
+    D -->|conda activate ml-experiment| P3[左下角: ml-experiment]
     P2 --> N1[numpy 1.24 / torch 2.0]
     P3 --> N2[numpy 1.21 / sklearn 1.3]
 ```
 
-> `embodied` 和 `ml-exp` 里**各自装各自的 numpy**，文件互不重叠——这就是"隔离"。换环境就像换独立厨房。
+> `embodied` 和 `ml-experiment` 里**各自装各自的 numpy**，文件互不重叠——这就是"隔离"。换环境就像换独立厨房。
 
 ---
 

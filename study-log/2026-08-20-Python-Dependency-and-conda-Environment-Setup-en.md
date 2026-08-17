@@ -10,7 +10,7 @@
 
 ## 0. One-line summary
 
-> **Different projects need different Python environments** — one project wants NumPy 1.x, another wants 2.x, install both globally and they will fight. **miniconda = a lightweight Anaconda** that lets you run **multiple isolated Python environments on one machine** without contaminating each other. **Four commands you'll use constantly: `create` to build, `activate` to enter, `install` to install a package, `deactivate` to exit**. **Don't install things in `base` recklessly; don't mix pip and conda carelessly** — the dependency graph will eventually break.
+> **Different projects need different Python environments** — one project wants NumPy 1.x, another wants 2.x, install both globally and they will fight. **miniconda = a lightweight Anaconda** that lets you run **multiple isolated Python environments on one machine** without contaminating each other. **The four core commands: `create` to build, `activate` to enter, `install` to install a package, `deactivate` to exit (all seven in §1.3)**. **Don't install things in `base` recklessly; don't mix pip and conda carelessly** — the dependency graph will eventually break.
 
 ---
 
@@ -37,7 +37,7 @@
 
 ### 1.2 What is miniconda — why not just use Python's built-in
 
-**Python's built-in**: install the python.org .exe → installs into `/usr/bin/python` (or `C:\Python39\` on Windows). Problems:
+**Python's built-in**: install the python.org .exe → installs to a fixed system/user directory (e.g. `/usr/bin/python` on Linux; on Windows the default is `%LocalAppData%\Programs\Python\`). Problems:
 - Only one Python;
 - Global site-packages shared across projects;
 - Project A wants numpy 2.x, project B wants 1.x → **they will fight**.
@@ -53,7 +53,7 @@
 | Command | What it does |
 |---|---|
 | `conda create -n <name> python=3.10` | Create a new environment named `<name>` with Python 3.10 |
-| `conda activate <name>` | Enter this environment (Windows: `activate`; macOS/Linux: same) |
+| `conda activate <name>` | Enter this environment (conda 4.6+ uses `conda activate` on all platforms) |
 | `conda deactivate` | Exit the current environment, return to base |
 | `conda install <pkg>` | Install a package in the current environment |
 | `conda list` | See what packages are installed in the current environment |
@@ -97,17 +97,17 @@ python -c "import numpy; print(numpy.__version__)"  # verify
 ```mermaid
 flowchart TD
     A[anaconda3/<br>miniconda3 install dir]
-    A --> B[envs/base/<br>Python + conda itself]
+    A --> B[the install root itself<br>(that IS the base env)<br>Python + conda itself]
     A --> C[envs/embodied/<br>Python 3.10 + numpy + torch + opencv]
-    A --> D[envs/ml-exp/<br>Python 3.11 + jupyter + sklearn]
+    A --> D[envs/ml-experiment/<br>Python 3.11 + jupyter + sklearn]
     B -->|conda activate base| P1[bottom-left: base]
     C -->|conda activate embodied| P2[bottom-left: embodied]
-    D -->|conda activate ml-exp| P3[bottom-left: ml-exp]
+    D -->|conda activate ml-experiment| P3[bottom-left: ml-experiment]
     P2 --> N1[numpy 1.24 / torch 2.0]
     P3 --> N2[numpy 1.21 / sklearn 1.3]
 ```
 
-> `embodied` and `ml-exp` each install **their own numpy**, files don't overlap — that's "isolation". Switching environments is like switching to an independent kitchen.
+> `embodied` and `ml-experiment` each install **their own numpy**, files don't overlap — that's "isolation". Switching environments is like switching to an independent kitchen.
 
 ---
 
