@@ -1,30 +1,30 @@
-# Lecture 01 — What *is* Embodied Intelligence? (Definition, the Closed Loop & the Research Landscape)
+# Lecture 01 — What is Embodied Intelligence? (Definition, Closed Loop, Research Landscape)
 
 > **Meta**
 > - Date: 2026-08-15 (Saturday)
 > - Lecture / Day: Lecture 01 — the *first* lecture of the study plan (Day 1)
-> - Plan anchor: `study-plan-60d.md` → **P1 概念入门 (Concept)**, course episodes **001–007**
-> - Goal of today: build the *map* in your head — what EI is, what its core loop is, and how the field is partitioned. Be able to explain it to a mirror in 3 minutes. No code today.
+> - Plan anchor: `study-plan-60d.md` → **P1 概念入门 (Concept Primer)**, course episodes **001–007**
+> - Goal of today: draw a "map" in your head — what embodied intelligence is, what its core loop is, and what the field's research cuts look like. Be able to mirror-talk it in 3 minutes; no code today.
 
 ---
 
 ## 0. One-line summary
 
-> **Embodied Intelligence (EI)** = an agent that has a **body** in the physical world and learns/acts by looping **perceive → decide → act → see consequence → decide again**.
-> It is the opposite of "disembodied AI" (a chatbot that only reads and writes text). The body is not an accessory; **the body is half of the intelligence.**
+> **Embodied Intelligence (EI)** = an intelligent agent that lives in the real physical world **with a body**. It learns and acts through a continuously spinning loop: **perceive the world → decide → act with the body → observe the result → decide again…**.
+> The exact opposite of "AI without a body" (a chatbot that only types). **The body isn't a peripheral; the body itself is half of intelligence.**
 
-> 📌 **Scope of this lecture**: episodes 001–005 cover the concept, architecture, challenges, research directions and industry showcase. Episodes 006–007 (servo working principle; stepper & brushless motors) are a "hardware appetizer" the course places at the end of the concept chapter; the full teardown comes on Day 2 (P2 Hardware). This lecture nails the "concept" half first.
+> 📌 **Scope of this lecture**: episodes 001–005 cover concept, architecture, challenges, research directions and industry demos; 006–007 (servo principle, stepper and brushless motors) are the "hardware appetizer" the course places at the end of the concept chapter — their full teardown is Day 2 (P2 Hardware). Today, nail the "concept" half.
 
 ---
 
-## 1. Core definition (the two-half picture)
+## 1. Core definition: intelligence is "two halves" stuck together
 
-Most people imagine "AI" as a brain in a box. Embodied intelligence insists on a **second half**:
+When most people think of "AI", they picture a brain in a box. Embodied intelligence insists on the other half:
 
-| Half | What it is | On a robot |
+| Half | What it is | What it looks like on a robot |
 |---|---|---|
-| **Brain (算法/智能)** | Perception, decision, learning | VLA, world models, IL/RL policies |
-| **Body (本体/身体)** | Mechanics, actuators, sensors, materials | Robot arm, actuators, encoders, cameras |
+| **Brain (algorithm / intelligence)** | perception, decision, learning | VLA, world models, imitation / reinforcement learning |
+| **Body (本体)** | mechanisms, actuators, sensors, materials | robot arm, actuators, encoders, cameras |
 
 The defining idea is the **closed loop**:
 
@@ -36,15 +36,17 @@ flowchart LR
     W -->|consequence / feedback| P
 ```
 
+![Embodied-intelligence closed-loop diagram: robot at the center, the cycle of perception → decision → action → environment](images/embodied-loop.png)
+
 This loop never stops while the robot is "alive." That is why it is called **embodied**: intelligence is *situated in* and *shaped by* a body interacting with the world.
 
 **Key historical anchor (cite it):** Rodney Brooks, *"Elephants Don't Play Chess"* (1990) and *"Intelligence Without Representation"* (1991). His core argument: smart behavior can emerge from simple body-grounded reactions, not from a giant symbolic world-model. This is the philosophical root of EI.
 
-### 1.1 Why the "body" matters (principle, not slogan)
+### 1.1 Why "body" matters (this is principle, not slogan)
 
-1. **Moravec's Paradox.** High-level reasoning (math, language) is *easy* for computers; low-level sensorimotor skills (grasping a cup, walking) are *hard*. We spent decades on the easy part and still struggle with the "obvious" physical skills a toddler has. → EI is the hard, unsolved frontier.
-2. **The body constrains and shapes the mind.** A soft, continuum body *cannot* be controlled by the same math as a rigid 6-DOF arm. Soft actuators have infinite-dimensional, nonlinear, hysteresis-laden dynamics that you cannot write as a clean closed-form equation — so you *model them as a black box and learn from data*. Same spirit as modern EI.
-3. **Data comes from interaction.** A language model learns from text someone already wrote. A robot must *generate* its own training data by moving and seeing what happens. **Embodiment = the ability to collect your own experience.**
+1. **Moravec's Paradox.** High-level reasoning (math, language) is "easy" for computers; low-level "sense + act" skills (grab a cup, walk two steps) are "hugely hard". We've spent decades cracking the upper half and are still wrestling with what kids do casually. → Embodied intelligence is the hard frontier that remains.
+2. **The body both constrains and shapes the brain.** A soft, continuously deforming body and a rigid 6-axis arm speak totally different mathematics. Soft actuators have infinite dimensions, nonlinearity, and hysteresis (push it, it slowly responds and doesn't return to the original shape) — there's no clean closed-form equation; you have to **treat it as a black box and learn from data**. That's exactly the modern EI way of thinking.
+3. **Data comes from "interaction".** Language models learn from others' already-written text; robots must **move themselves, see the result**, to accumulate their own training data. **A body = the ability to produce your own experience.**
 
 ### 1.2 The course's four-layer architecture + four challenges (episodes 002, 003)
 
@@ -70,6 +72,18 @@ This loop never stops while the robot is "alive." That is why it is called **emb
 
 > These four mountains map to the next 60 days: perception ambiguity → OpenCV/deep learning; long-horizon decision → world models/planning; compliant control → PID/force control; data scarcity → simulation (Sim2Real) + imitation learning. **Remember the four names now; each gets its own chapter later.**
 
+<mark>**📌 Slide supplement 1 | A paradigm shift: from "computational" to "physical" intelligence.** Past AI (LLMs) is **computational intelligence** — it lives in data and virtual environments, outputs a piece of text/image and stops; embodied intelligence is **physical intelligence** — it perceives and *actively changes* the physical world. This is a leap from "digital" to "physical", not just bolting a ChatGPT onto a robot.</mark>
+
+<mark>**📌 Slide supplement 2 | Traditional robotics vs traditional AI.** Traditional robotics emphasizes "precise control, motion planning, dynamics models (model-based)" — precise, reproducible motions in known environments; traditional AI/LLM emphasizes "pattern recognition and generation in data", a fundamentally non-physical "brain". **Embodied intelligence = robotics' "body" + AI's "brain"**, a hybrid Data-driven + Model-based paradigm.</mark>
+
+<mark>**📌 Slide supplement 3 | Real-time closed loop is the key difference.** Traditional LLM training is "offline, open-loop" — data → training → model → output (one-shot), the model gets no environment feedback; embodied intelligence is "real-time, closed-loop" — perceive → decide → act ↻ feedback → new perception… The agent keeps learning in the "act-perceive" cycle — the foundation of physical intelligence. This is the engineering meaning of the "loop" in §0.</mark>
+
+<mark>**📌 Slide supplement 4 | The four-layer technology stack (another cut).** ① **Application layer** (industry/home/special-ops/medical) ② **Algorithm/cognition layer** (perception CV, decision LLM/RL, control PID/inverse-kinematics) ③ **Software/system layer** (ROS, simulation, protocols like WebSocket·DDS·gRPC) ④ **Hardware layer** (motors/reducers/sensors/compute). Our whole 60 days builds bottom-up, layer by layer. Note this is a *different dimension* from "perceive → decide → control → execute" above: one is "how the system is built in layers", the other is "how it divides work at runtime".</mark>
+
+![Four-layer technology stack: hardware (bottom) → software/system → algorithm/cognition → application (top)](images/four-layer-stack.png)
+
+<mark>**📌 Slide supplement 5 | Another "four challenges" (engineering view).** ① **Sim-to-Real Gap** (simulation vs reality) ② **Data sparsity** (robot trial-and-error is expensive, interaction data is scarce) ③ **Generalization** (specialist → generalist) ④ **Safety & interpretability**. Note: these four mountains and the four above (perception ambiguity / long-horizon / compliant control / data scarcity) are **two different lenses** — the former is "engineering deployment", the latter is "capability difficulty". Don't conflate them.</mark>
+
 ### 1.3 Hardware appetizer: three motors in one line (006–007; full teardown on Day 2)
 
 The concept chapter ends with three "muscles of the body" to recognize; today you only need to tell "which turns accurately, which turns fast":
@@ -86,71 +100,71 @@ The concept chapter ends with three "muscles of the body" to recognize; today yo
 
 ## 2. The research landscape (memorize this shape)
 
-Think of EI as **one loop** with **five stations**. Today you only need to *name and place* each station; later phases go deep.
+Think of embodied intelligence as **a ring** with **5 stations**. Today you only need to **name each station and know where it sits**; the later stages will dig in one by one.
 
 ```mermaid
 flowchart TD
-    subgraph SENSE[1 · Perception 感知]
-        V[Vision / 相机]
-        T[Tactile / 触觉 / 电子皮肤]
-        P2[Proprioception / 本体感知<br>encoder, IMU]
-        F[Force / 力矩]
+    subgraph SENSE[1 · Perception]
+        V[Vision / camera]
+        T[Tactile / e-skin]
+        P2[Proprioception<br>encoder, IMU]
+        F[Force / torque]
     end
-    subgraph DECIDE[2 · Decision & Planning 决策]
-        VLA[VLA<br>Vision-Language-Action]
-        WM[World Model<br>预测未来]
+    subgraph DECIDE[2 · Decision & planning]
+        VLA[VLA<br>vision-language-action]
+        WM[World model<br>predict what comes next]
     end
-    subgraph LEARN[3 · Learning 学习范式]
-        IL[IL 模仿学习<br>BC / ACT / DP]
-        RL[RL 强化学习<br>PPO / SAC / DreamerV3]
+    subgraph LEARN[3 · Learning paradigms]
+        IL[Imitation learning IL<br>BC / ACT / DP]
+        RL[Reinforcement learning RL<br>PPO / SAC / DreamerV3]
     end
-    subgraph CONTROL[4 · Control 控制]
+    subgraph CONTROL[4 · Control]
         WBC[WBC / MPC]
         SR[Sim2Real]
     end
-    subgraph BODY[5 · Physical Intelligence 物理智能]
-        SOFT[Soft robotics<br>人工肌肉 / 可穿戴]
-        HW[Humanoid HW stack<br>关节 / 灵巧手 / 芯片]
+    subgraph BODY[5 · Physical intelligence]
+        SOFT[Soft robots<br>artificial muscles / wearables]
+        HW[Humanoid hardware stack<br>joints / dexterous hands / chips]
     end
     SENSE --> DECIDE --> LEARN --> CONTROL --> BODY
-    BODY -->|actuates the world| SENSE
+    BODY -->|drives the real world| SENSE
 ```
 
-**Five stations + landmark work (recognize, don't memorize):**
+**5 stations + landmark works (today, just recognize the names):**
 
-| Station | One phrase | Landmark to name-drop |
+| Station | One line | Landmark (just name-drop) |
 |---|---|---|
-| 1 Perception | "eyes, skin, muscles' own sense" | — |
-| 2 Decision · VLA | "see + language → action" | RT-2 (Brohan et al., 2023); OpenVLA (2023, open-source 7B params); π₀ (Physical Intelligence, 2024) |
-| 2 Decision · World Model | "imagine the next frame, then act" | Ha & Schmidhuber, *World Models* (2018, arXiv:1803.10122); Dreamer (Hafner) |
-| 3 Learning · IL (BC/ACT/DP) | "learn by watching demonstrations" | **ACT** — Zhao et al., RSS 2023 (Stanford ALOHA); **Diffusion Policy** — Chi et al., RSS 2023 (arXiv:2303.04137) |
-| 3 Learning · RL | "learn by trial and reward" | PPO (Schulman 2017); SAC; DreamerV3 |
-| 4 Control | "turn a plan into torque" | WBC / MPC; Sim2Real (transfer sim → real) |
-| 5 Physical Intelligence · Soft robotics | "the soft, muscle-like body" | Soft robotics / artificial muscles / wearables |
+| 1 Perception | "eyes, skin, and the muscle's own sense" | — |
+| 2 Decision · VLA | "see + hear command → directly output action" | RT-2 (Google, 2023); OpenVLA (2023, open-source 7B); π₀ (Physical Intelligence, 2024) |
+| 2 Decision · World model | "rehearse the next frame in the head, then decide" | Ha & Schmidhuber, *World Models* (2018); Dreamer |
+| 3 Learning · Imitation (BC/ACT/DP) | "watch an expert, then copy" | **ACT** — Zhao et al., RSS 2023 (Stanford ALOHA); **Diffusion Policy** — Chi et al., RSS 2023 (arXiv:2303.04137) |
+| 3 Learning · RL | "trial and error, chase the reward" | PPO (Schulman 2017); SAC; DreamerV3 |
+| 4 Control | "turn the plan into real torque" | WBC / MPC; Sim2Real (sim-to-real) |
+| 5 Physical intelligence · Soft robot | "a soft, muscle-like body" | soft robots / artificial muscles / wearables |
 
-> **Tooling note:** `LeRobot` (Hugging Face) is the open-source IL platform that runs ACT / Diffusion Policy on low-cost hardware like **SO-101**. There is related practice already in the `so101-act/` repo. Keep that connection — this lecture (P1) is the *why*, `so101-act` is the *proof*.
+> **Tool seed:** `LeRobot` (Hugging Face's open-source library) is the platform for running imitation learning — it can run ACT / Diffusion Policy on cheap hardware like the SO-101. The `so101-act/` repo already has practice. Keep this connection — this lecture (P1) is "why"; `so101-act` is "the evidence."
 
 ---
 
-## 3. Principles to internalize (the "why it works" layer)
+## 3. Principles to internalize (why it works)
 
-1. **The sense–think–act loop is the unit of intelligence.** Not "a smart model," but "a model that keeps correcting itself through the loop."
-2. **Data is the fuel; embodiment is the refinery.** You cannot download robot experience — you must *generate* it (teleoperation, simulation). Datasets (e.g., LeRobot's) and simulators (Isaac Lab, MuJoCo) matter as much as algorithms.
-3. **IL first, RL later, World Model to fill the gaps.** Imitate an expert to get 80% there cheaply (IL/BC), fine-tune the tail with reward (RL), use a world model for long-horizon prediction when data is scarce.
-4. **The body redefines the action space.** A rigid arm's action = 6 joint angles. A soft gripper's action = voltage → continuous deformation. **Same algorithm family, different "language" the body speaks** — your research entry point.
+1. **The "perceive → think → act" loop is the smallest unit of intelligence.** Not "a smart model", but "a model that constantly self-corrects through a loop".
+2. **Data is the fuel; the body is the refinery.** You can't download a robot's experience — it has to **generate it itself** (teleop, simulation). That's why datasets (e.g. LeRobot's), simulators (Isaac Lab, MuJoCo) and algorithms matter equally.
+3. **Imitation (IL) first, trial-and-error (RL) after, world models fill the gap.** Modern division of labor: copy the expert to 80% (cheap, IL/BC), then reward-tune the tail (RL), use world models for long-horizon when data is scarce.
+4. **The body redefines the "action space".** A rigid arm's action = 6 joint angles; a soft gripper's action = voltage → continuous deformation. **Same algorithm family, the body speaks a different language** — that is the research entry point.
 
 ---
 
 ## 4. Today's operation steps (study workflow, not coding)
 
-1. **Read this file top-to-bottom once** (you are here).
-2. **Redraw the two diagrams by hand** (closed loop, 5-station map) on paper. Don't copy-paste.
-3. **Skim 2 landmark papers (not full read):** ACT (RSS 2023) and Diffusion Policy (arXiv:2303.04137). Abstract + Figure 1 only.
-4. **Mirror test (the checkpoint):** close everything and explain, out loud, for 3 minutes: *"Embodied intelligence is ___; the loop is ___; the five stations are ___; soft robotics sits at station ___."*
-5. **Write 3 sentences** connecting "body" and "brain."
-6. **(Later)** when you reach the Behavior Cloning (BC) lectures, reproduce one ACT demo in LeRobot sim. Not today.
+1. **Read this file once** (you are here).
+2. **Hand-draw the two diagrams on paper** (the closed loop + the 5-station map). Don't copy-paste — drawing forces the structure into your head.
+3. **Skim 2 papers (no deep read):** ACT (RSS 2023) and Diffusion Policy (arXiv:2303.04137). Just read the abstract + Figure 1, to recognize them.
+4. **Mirror test (checkpoint):** close everything, speak for 3 minutes: *"Embodied intelligence is ___; the loop is ___; the five stations are ___; the soft robot belongs to station ___."*
+5. **Write 3 sentences** explaining the relation between "body" and "brain".
+6. **(Later)** when you reach the BC episodes, reproduce an ACT demo in LeRobot's simulator. Not today.
 
-> ✅ **Definition of "done today":** you can pass the mirror test and you have the map drawn.
+> ✅ **Definition of "done today":** mirror test passed, and the map drawn.
 
 ---
 
@@ -158,29 +172,29 @@ flowchart TD
 
 | # | Misconception | Reality |
 |---|---|---|
-| 1 | "Embodied AI = put a ChatGPT on a robot." | No. A chatbot *talks*; EI *acts and feels consequences*. Language is one input, not the whole brain. |
-| 2 | "Bigger model + more data = smarter robot, always." | EI needs the **right** data (interaction), not just more text. Real robot data is scarce/expensive; that's why Sim2Real and IL-from-few-demos exist. |
-| 3 | "IL and RL are basically the same." | IL = copy an expert (supervised, cheap, stalls on unseen cases). RL = learn from reward (explores, needs sim/safe env, sample-hungry). Used in sequence. |
-| 4 | "VLA and World Model are the same thing." | VLA maps *sense+language → action* directly. World Model *predicts the future* so the agent can plan inside its head. Distinct concepts, often combined. |
-| 5 | "Soft robotics is separate from AI." | Exactly the opposite — the *body* is half of EI. Soft actuators are a harder, richer action space the algorithms must learn to speak. |
-| 6 | "A mechanical background means the AI/algorithm part is someone else's job." | The whole point of EI is the **body–brain interface**. Mechanical intuition *is* part of the research; learn the brain vocabulary, but don't outsource the body. |
-| 7 | "I must understand every formula before starting." | No. Learn the *map and the loop* first (this lecture); formulas come per-station later. Top-down before bottom-up. |
+| 1 | "Embodied AI = bolting a ChatGPT onto a robot." | Wrong. A chatbot only *talks*; embodied intelligence *acts* and *feels consequences*. Language is just one input, not the whole brain. |
+| 2 | "Bigger model + more data = always smarter robot." | Embodied AI needs the **right** data (interaction data), not more text. Real-robot data is scarce and expensive — hence Sim2Real and "learn from a few demos" imitation learning. |
+| 3 | "Imitation learning and reinforcement learning are basically the same." | Imitation = copy the expert (supervised, cheap, but blind to novelty); RL = learn by reward-driven trial-and-error (explores, needs simulation/safety, sample-hungry). They are **complementary, used in relay**. |
+| 4 | "VLA and world model are the same thing." | VLA directly maps "see + hear → action"; a world model predicts the future so the agent can plan in its head. Often used together, but two distinct concepts. |
+| 5 | "Soft robots have nothing to do with AI." | The opposite — **the body** is half of embodied intelligence. Soft actuators simply give the algorithm a richer (harder) action space to learn to "speak". |
+| 6 | "As a mechanical student, the AI / algorithm side is someone else's job." | The essence of EI is the **body–brain interface**. Mechanical intuition is itself part of the research; learn the brain's vocabulary, but don't outsource the body. |
+| 7 | "You have to understand every formula before starting." | No. First grab the **map and the loop** (this lecture); formulas come when you hit their station. Top-down first, then bottom-up. |
 
 ---
 
 ## 6. Next steps / checkpoint
 
-- **Checkpoint passed if:** you can redraw the loop + 5-station map and pass the 3-minute mirror test.
-- **Next lecture (Day 2):** **Hardware** — actuators, gear reduction, angle sensors, 3D printing (course 008–012). The parts that make a robot actually move.
-- **This week's seed:** keep `LeRobot` + `so101-act/` open as tangible proof that this map is real.
+- **Checkpoint passed if:** you can draw the closed loop + 5-station map by hand and pass the 3-min mirror test.
+- **Next lecture (Day 2):** **Hardware** — actuators, reduction gears, angle sensors, 3D printing (episodes 008–012). The parts that make a robot actually *move*.
+- **This week's seed:** keep `LeRobot` and `so101-act/` in mind as the physical evidence that "this map is real, not a castle in the air".
 
 ---
 
 ### References (for later, not required today)
-- Brooks, R. (1990). *Elephants Don't Play Chess.*
-- Brooks, R. (1991). *Intelligence Without Representation.*
-- Zhao et al. (2023). *Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware* (ACT). RSS 2023.
-- Chi et al. (2023). *Diffusion Policy.* RSS 2023. arXiv:2303.04137.
-- Brohan et al. (2023). *RT-2: Vision-Language-Action Models.* Google.
-- Ha & Schmidhuber (2018). *World Models.* arXiv:1803.10122.
-- Hugging Face. *LeRobot* (open-source IL library, SO-101 support).
+- Brooks, R. (1990). *Elephants Don't Play Chess*.
+- Brooks, R. (1991). *Intelligence Without Representation*.
+- Zhao et al. (2023). ACT, *Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware*. RSS 2023.
+- Chi et al. (2023). *Diffusion Policy*. RSS 2023. arXiv:2303.04137.
+- Brohan et al. (2023). RT-2: vision-language-action model. Google.
+- Ha & Schmidhuber (2018). *World Models*. arXiv:1803.10122.
+- Hugging Face. LeRobot (open-source imitation-learning library, supports SO-101).
