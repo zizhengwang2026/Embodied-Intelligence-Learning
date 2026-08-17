@@ -81,6 +81,10 @@ python -c "import numpy; print(numpy.__version__)"  # 验证
 
 > **判断要不要新建环境**：项目 A 和 B 的依赖有冲突、版本要求不同、或者想"干净从零再来"——就开新环境。
 
+<mark>**📌 课件补充 1｜"依赖地狱"的具体样子**：项目 A（数据分析）要 pandas 1.5 + numpy 1.21，项目 B（机器学习）要 pandas 2.1 + numpy 1.24——如果全局只装一套库，两个项目**无法同时工作**。Conda 的核心思想就是**隔离（Isolation）**：给每个项目建一个独立的"盒子"，每个盒子有独立的 Python 版本和包版本，A 环境装的包对 B 环境完全无影响。而且 Conda **跨语言**——不仅能管 Python，还能管 R、C++ 等，从此一台电脑可以同时拥有无数个互不干扰的开发环境。</mark>
+
+<mark>**📌 课件补充 2｜Git + Conda = 标准化开发的"黄金搭档"**：**Git 管代码的"历史"与"协作"（时间维度）**——跟踪每一次代码变更，关键词 clone/commit/push/pull；**Conda 管项目的"依赖"与"环境"（空间维度）**——隔离不同项目的运行环境，关键词 create/activate/install/deactivate。两者合起来，就是**专业、可靠、可复现**的开发工作流：Git 保证"代码随时可回退、可协作"，Conda 保证"环境随时可重建、不冲突"。</mark>
+
 ---
 
 ## 2. 原理（先抓这几条）
@@ -150,4 +154,4 @@ flowchart TD
 - 课程视频 031–035（黑马程序员《具身智能》223 节版）。
 - miniconda 官网安装包（Windows / macOS / Linux 三版）。
 - 国内 conda 镜像配置（清华 TUNA / 阿里云）——搜"conda 清华源"一行命令搞定。
-- （后续）Day 8–11 真机实验 + WebSocket + 真实角度读取，会基于今天搭好的 `embodied` 环境跑代码。
+- （后续）Day 8–11 真机实验 + WebSocket + 真实角度读取，会基于今天搭好的 `embodied` 环境跑代码。</content>

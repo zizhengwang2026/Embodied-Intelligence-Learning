@@ -81,6 +81,10 @@ python -c "import numpy; print(numpy.__version__)"  # verify
 
 > **Rule of thumb: when do I need a new environment?** Whenever two projects' dependencies clash, versions conflict, or you want a "clean from-scratch" — open a new env.
 
+<mark>**📌 Slide supplement 1 | What "dependency hell" actually looks like.** Project A (data analysis) needs pandas 1.5 + numpy 1.21; Project B (machine learning) needs pandas 2.1 + numpy 1.24 — install one global set and the two projects **cannot work at the same time**. Conda's core idea is **isolation**: give each project its own "box" with its own Python version and package versions; what you install in A is completely invisible to B. Conda is also **cross-language** — it manages not only Python but also R, C++, etc., so one machine can hold countless non-interfering environments.</mark>
+
+<mark>**📌 Slide supplement 2 | Git + Conda = the "golden pair" of standardized development.** **Git manages the "history & collaboration" of code (time dimension)** — track every change; keywords: clone/commit/push/pull. **Conda manages the "dependencies & environment" of a project (space dimension)** — isolate each project's runtime; keywords: create/activate/install/deactivate. Together they form a **professional, reliable, reproducible** workflow: Git guarantees "code can always be rolled back and collaborated on", Conda guarantees "the environment can always be rebuilt without conflicts".</mark>
+
 ---
 
 ## 2. Principles to internalize (why it works)
@@ -150,4 +154,4 @@ flowchart TD
 - Course episodes 031–035 (黑马程序员《具身智能》223-ep version).
 - miniconda official site installers (Windows / macOS / Linux).
 - Domestic conda mirror configuration (Tsinghua TUNA / Aliyun) — search "conda Tsinghua mirror" for one-line configuration.
-- (Later) Day 8–11 real-machine experiments + WebSocket + real angle reading will run on top of the `embodied` environment you built today.
+- (Later) Day 8–11 real-machine experiments + WebSocket + real angle reading will run on top of the `embodied` environment you built today.</content>
