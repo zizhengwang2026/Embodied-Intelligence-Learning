@@ -35,6 +35,8 @@ Analogy: a jar lid you can't open by hand opens with a wrench — you didn't get
 
 **One number to know: the reduction ratio.** Reduction ratio = input speed ÷ output speed (e.g., 50:1 = speed drops to 1/50, ideal torque ×50). When picking a servo, watch two units: **kg·cm** (servo convention) and **N·m** (SI), roughly **1 kg·cm ≈ 0.098 N·m**. To size a gripper's payload, work backwards: end torque = motor torque × reduction ratio × efficiency.
 
+<mark>**📌 Slide supplement | Deriving the reduction ratio from first principles.** Power `P = τ × ω` (torque × angular speed). An ideal frictionless gear conserves energy: `P_in ≈ P_out`, i.e. `τ_in × ω_in ≈ τ_out × ω_out`, which rearranges to **`τ_out / τ_in ≈ ω_in / ω_out`** — torque ratio is the inverse of speed ratio. Define **reduction ratio `i = ω_in / ω_out`** (input speed ÷ output speed), then **`τ_out ≈ τ_in × i`**: output torque ≈ input torque × ratio. Bigger ratio = more force, slower speed — the math behind "trading speed for strength". It's exactly a car's gearbox: first gear (small drives large) has i > 1, slow but climbs well; fifth gear (large drives small) has i < 1, fast but weak.</mark>
+
 ### 1.2 Damping / anti-backlash gear: killing the "play"
 
 Meshing gears have a natural gap (backlash). When you reverse direction, you must "eat" that gap before motion starts — showing up as **dead zone, position slack, jitter**. A damping / double-spring anti-backlash gear preloads the gap shut so both directions are solid.
@@ -50,6 +52,10 @@ The motor turns, but the **controller must know the angle** to correct it. Three
 
 This ties straight back to Lecture 01's loop: **the angle sensor *is* the hardware of proprioception** — the robot's organ for "feeling its own muscle position."
 
+<mark>**📌 Slide supplement 1 | How a potentiometer works (voltage divider).** A potentiometer is a **variable resistor** — a wiper slides over resistive material, changing the resistance in circuit. In a **voltage-divider circuit**, the output voltage is `V_out = V_in × (R_part / R_total)`; because rotation angle is proportional to `R_part`, **angle is proportional to V_out**. Signal chain: mechanical angle → resistance → analog voltage (0–5V) → controller ADC (analog-to-digital) → digital value (e.g. 0–1023) → upper layer infers the angle. Crack open an SG90 servo and you'll find exactly this potentiometer — its "contact-based, wearing, limited-precision" nature caps the performance of cheap servos.</mark>
+
+<mark>**📌 Slide supplement 2 | Magnetic encoders: absolute vs incremental.** A magnetic encoder = a radially-magnetized magnet (spins with the shaft) + a sensor chip (uses Hall effect / magnetoresistance to sense field direction), contactless, noise-immune, high precision. Two outputs: **absolute** — reports "current angle is 135.7°" over SPI/I²C, **knows position on power-up, no homing needed**; **incremental** — outputs A/B quadrature pulses, the controller counts pulses for angle and reads phase for direction, simpler circuit but **loses position on power-off, needs homing**. High-end servos, industrial joints, and drone gimbals use magnetic encoders — the standard for high-precision robot control.</mark>
+
 ### 1.4 3D printing: turning a mental structure into a real one
 
 Flow: **CAD model → export STL → slicer cuts it into layers → printer stacks layers**.
@@ -59,6 +65,28 @@ Flow: **CAD model → export STL → slicer cuts it into layers → printer stac
 ### 1.5 Encoder servo: a self-correcting mini loop
 
 Pack "motor + reduction + driver + feedback" into one module = **servo**; it is already a mini closed loop (potentiometer feedback, just low-resolution and not exposed). Swap in a high-res **encoder** and expose the angle, and it becomes an **encoder servo**: you say "go to 90°," it internally measures the actual angle and keeps adjusting until aligned, and also reports the current angle to the upper-layer algorithm. **This is already a miniature "perceive → decide → act" loop** — same principle as Lecture 01's big loop, just shrunk into a palm-sized motor.
+
+<mark>**📌 Slide supplement | The three motors, fully compared (servo / stepper / brushless)**</mark>
+
+<mark>**① Servo = a tightly-integrated module of motor + transmission + sensing + control**, inherently closed-loop. Four parts: DC motor (raw power) → reduction gear train (slow down, boost torque) → position sensor (usually a potentiometer, reads output-shaft angle) → control circuit (a micro PID that takes the command and closes the loop). **The control signal is PWM (pulse-width modulation)**: you vary the high-level duration of a square wave to issue the command. Internal loop: control circuit receives PWM → parses target angle (Target) → potentiometer reads current angle (Current) → computes `Error = Target − Current` → built-in PID drives the motor forward/reverse → loops until error ≈ 0. **One line: give it a target, it goes there by itself** — so servos are "easy, self-feeding-back, disturbance-rejecting", but limited in precision, with a fixed (non-tunable) PID and wearing gears.</mark>
+
+<mark>**② Stepper = the physical executor of the digital world, open-loop.** Principle: energize phase coils in sequence to build a rotating magnetic field that "pulls" a toothed rotor one precise step at a time; `angle turned = steps × step angle`. **Three drive modes**: wave (one coil energized at a time, low torque), full-step (two adjacent coils, high torque), half-step (alternating one/two coils, step angle halved, smoother and finer). The controller sends a **pulse signal (PUL/STEP — one pulse = one step; frequency sets speed) + a direction signal (DIR — high/low sets forward/reverse)**. Advanced: **microstepping** precisely controls the current ratio across coils to split one physical step into smaller "micro-steps" — smoother and finer, at the cost of slightly lower torque. Downside: **open-loop can lose steps** (under heavy load or high speed, the system doesn't know) and vibrates at low speed.</mark>
+
+<mark>**③ Brushless DC (BLDC) = a high-speed motor with electronic commutation.** The difference from brushed motors is **how it commutates**: brushed uses physical brushes + commutator; brushless uses an external controller (ESC) to **energize the three phase coils in sequence, forming a rotating field that pulls the permanent-magnet rotor**, with no brush wear — higher efficiency, speed, and life. **Six-step commutation**: at any instant one coil is driven positive (+), one negative (−), one off (O), six combinations total (`+ − O → + O − → O + − → − + O → − O + → O − +`). The controller must know rotor position to commutate, two ways: **sensored** (Hall sensors directly read the rotor magnet position — smooth start, good low-speed) and **sensorless** (read back-EMF to estimate position, e.g. FOC — simpler and cheaper).</mark>
+
+<mark>**Three-way comparison table**:
+
+| Trait | Servo | Stepper | Brushless (servo) |
+|---|---|---|---|
+| Control | position closed-loop (PWM) | position open-loop (pulse/dir) | speed/torque/position full closed-loop |
+| Strength | high integration, easy | precise position (when not losing steps) | high speed / efficiency / response |
+| Weakness | limited precision/response | loses steps, no feedback | complex system, high cost |
+| Peripherals | almost none | needs a driver | needs driver + encoder |
+| Typical use | teaching robot joints | 3D printers, CNC | industrial robots, drones |
+
+**There is no best motor, only the most suitable motor** — designing an embodied-AI system is fundamentally a trade-off among cost, performance, and control complexity. Our teaching arm picks the servo precisely because it lowers the hardware/control barrier, letting us focus on the upper-layer AI algorithms.</mark>
+
+![Three-motor comparison: servo (with horn), stepper (with coils), brushless DC (cylindrical) side by side from left to right](images/three-motors.png)
 
 ---
 
