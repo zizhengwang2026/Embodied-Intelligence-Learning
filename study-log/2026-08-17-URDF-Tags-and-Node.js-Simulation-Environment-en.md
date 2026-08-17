@@ -42,7 +42,7 @@ A joint is "how parts connect." It must write:
 - `type`: revolute (rotate) / prismatic (slide) / continuous (spin forever) / fixed (welded). Written as a joint attribute: `<joint type="revolute">`.
 - `<axis xyz="0 0 1"/>`: **which axis it rotates/slides around**. "0 0 1" = around Z. This is the core of arm kinematics.
 - `<origin xyz="..." rpy="..."/>`: where this joint **sits on the previous part, and its orientation**. xyz is position (meters), rpy is orientation (radians, roll-pitch-yaw, fixed-axis X→Y→Z).
-- (optional, revolute) `<limit lower="..." upper="..." effort="..." velocity="..."/>`: clamp the angle range / torque / speed.
+- (**required** for revolute / prismatic; not needed for continuous / fixed) `<limit lower="..." upper="..." effort="..." velocity="..."/>`: clamp the angle range / torque / speed.
 
 ### 1.3 What Node.js is, and why the simulation needs it (episode 021)
 
@@ -134,7 +134,7 @@ flowchart TD
 | 4 | "Skipping inertial (or all zeros) is fine." | mass 0 / inertia 0 → the part is "weightless" in dynamics, flies off under any force. You may fudge visual, never inertia. |
 | 5 | "Node.js is just for websites, unrelated to robots." | This course's simulation is a web stack; Node.js is the base that runs it. No Node → no sim environment. |
 | 6 | "`node -v` prints a number, so just run the project." | You still need `npm install` for dependencies; a mismatched Node version can also stop the project from booting. |
-| 7 | "A link can have two parents (like two legs sharing a torso)." | Standard URDF is a **tree**; a link has one parent. Multi-parent needs SDF instead. |
+| 7 | "A link can have two parents (e.g. a parallel mechanism: the end effector connects back to the base through two chains)." | Standard URDF is a **tree**; a link has one parent. Note that "two legs sharing a torso" is actually **legal** (one parent can have many children); what URDF cannot express is a **closed loop** — parallel mechanisms need SDF / MJCF or a fixed joint breaking the loop. |
 
 ---
 

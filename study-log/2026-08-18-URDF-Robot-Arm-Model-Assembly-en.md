@@ -61,7 +61,7 @@
 
 ## 3. Diagram: how an arm is assembled piece by piece
 
-**Diagram 1: a 5-axis arm's kinematic chain (who hangs on whom)**
+**Diagram 1: the arm's kinematic chain (4 joints: shoulder / elbow / wrist / gripper)**
 
 ```mermaid
 flowchart TD
