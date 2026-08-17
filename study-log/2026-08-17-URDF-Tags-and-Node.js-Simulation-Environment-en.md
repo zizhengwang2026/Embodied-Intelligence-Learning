@@ -50,6 +50,8 @@ A joint is "how parts connect." It must write:
 - This course's simulation is a **web stack** (HTML + JavaScript drawing the robot's 3D scene), so you install Node.js on your computer, boot the project, then open it in a browser.
 - Verify it's installed: type `node -v` (prints Node's version) and `npm -v` (prints npm's version). Both printing numbers = done.
 
+<mark>**📌 Slide supplement | LTS vs Current when installing Node.js.** On nodejs.org there are two lines — **LTS (long-term support)**: more stable, longer maintenance, recommended for most users; **Current (latest)**: newest features but possibly unstable, for those who like to try things. **For enterprise/study development, always pick LTS.** Keep the default options during install — the installer adds `node` and `npm` to your system PATH automatically. And Node.js isn't only "for simulation" — it can write backend servers/APIs, run frontend frameworks' (React/Vue) build tools, write CLI tools, and freely use millions of open-source packages on npm.</mark>
+
 ### 1.4 Sim environment test (episode 022)
 
 After Node is installed: enter the project folder, `npm install` (installs dependencies per `package.json`) → run the start command → open `localhost` on some port in the browser → see the robot. This is the "display window" for the arm you build on Day 5.
