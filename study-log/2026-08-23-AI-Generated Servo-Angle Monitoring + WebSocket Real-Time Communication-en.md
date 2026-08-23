@@ -43,7 +43,17 @@ The oldest way for a browser and server to talk is HTTP "question-answer": the b
 | HTTP polling | the browser asks "angle?" every 100 ms | most requests are empty/wasted; latency |
 | **WebSocket** | one handshake, then a **long-lived connection**; both sides push messages anytime | real-time, cheap |
 
-![WebSocket real-time bidirectional communication: browser (laptop) ↔ server, arrows flowing data in both directions](images/websocket-realtime.png)
+```mermaid
+sequenceDiagram
+    participant R as Robot / Servo
+    participant S as WebSocket Server
+    participant W as Web Frontend
+    R->>S: Report angle JSON {id, angle}
+    S-->>W: Push in real time (WebSocket)
+    W->>W: Render live angle / curve
+    W->>S: Control command (optional)
+    S->>R: Send command down
+```
 
 <mark>WebSocket is a **full-duplex** long-lived connection: after the handshake, the server **actively pushes** new angles to the browser, and the browser can **send commands anytime** without waiting to be asked.</mark> This is exactly why the "software/system layer" diagram lists WebSocket among robot communication protocols (alongside DDS and gRPC) — it is naturally suited to high-frequency, low-latency, bidirectional real-time data streams.
 
@@ -107,7 +117,7 @@ sequenceDiagram
 3. **Explain two terms out loud**: Vibe Coding (you describe, AI writes, you verify); WebSocket (full-duplex, long-lived, real-time push).
 4. **Watch 043–046** (1.0–1.5× speed). Focus on 045: why WebSocket beats HTTP polling.
 5. **(Hands-on) Use the AI to write a minimal angle monitor**: first ask it in one sentence to generate the "backend reads servo angle + WebSocket broadcast" skeleton and run it; then add "webpage receives and displays". **Verify each added piece before moving on.**
-6. **Mirror test (3 min, close everything and talk):** *"What is Vibe Coding and what is my new role ___; WebSocket vs HTTP polling differ in ___; what does full-duplex mean ___; a real-time angle chain has which three segments ___; the biggest pitfall of AI-generated code is ___."*
+6. **Mirror test (3 min, close everything and talk):** *"What is Vibe Coding and what is my new role ___; WebSocket vs HTTP polling differ in ___; what does full-duplex mean ___; a real-time angle chain has which three segments ___; the biggest pitfall of AI-generated code is ___"*
 
 > ✅ **Definition of "done today":** can explain Vibe Coding + WebSocket full-duplex + the three segments of a real-time chain, and can use the AI to build a minimal page that shows angles live.
 
@@ -139,7 +149,6 @@ sequenceDiagram
 The deepest impression from "watching angles live" in the bootcamp: **seeing it live and seeing it only from logs afterwards are two totally different debugging experiences.**
 
 1. **Live visualization = having eyes.** Pushing the SO-101's joint angles to a webpage over WebSocket, the curve on screen moved the moment I moved the master arm. Whether calibration was right or there was "zero-drift" (Day 8's pitfall) was visible at a glance — far better than staring at a string of numbers.
-
 2. **"AI writes, I verify" actually works.** When I asked the AI to generate the "read angle + WebSocket broadcast" skeleton, the first version had the wrong servo ID. **If I hadn't verified in small pieces and had just run it, I'd have been staring at an angle that never read correctly.** That moment turned "verify in small pieces" from a slogan into muscle memory.
 
 > If I were to redo it: build the minimal "read angle → print" loop **first**, confirm the angle is trustworthy (calibration is fine), *then* add WebSocket and the webpage on top. A shaky foundation only gets more dangerous the higher you build.
