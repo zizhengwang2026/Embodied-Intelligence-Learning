@@ -36,7 +36,13 @@ flowchart LR
     W -->|consequence / feedback| P
 ```
 
-![Embodied-intelligence closed-loop diagram: robot at the center, the cycle of perception → decision → action → environment](images/embodied-loop.png)
+```mermaid
+flowchart LR
+    P["👁 Perceive<br>Camera / Touch / Proprioception"] --> D["🧠 Decide<br>Policy / VLA / Planner"]
+    D --> A["💪 Act<br>Motor / Servo / Actuator"]
+    A --> W["🌍 Real World"]
+    W -->|"Feedback"| P
+```
 
 This loop never stops while the robot is "alive." That is why it is called **embodied**: intelligence is *situated in* and *shaped by* a body interacting with the world.
 
@@ -80,7 +86,12 @@ This loop never stops while the robot is "alive." That is why it is called **emb
 
 <mark>**📌 Slide supplement 4 | The four-layer technology stack (another cut).** ① **Application layer** (industry/home/special-ops/medical) ② **Algorithm/cognition layer** (perception CV, decision LLM/RL, control PID/inverse-kinematics) ③ **Software/system layer** (ROS, simulation, protocols like WebSocket·DDS·gRPC) ④ **Hardware layer** (motors/reducers/sensors/compute). Our whole 60 days builds bottom-up, layer by layer. Note this is a *different dimension* from "perceive → decide → control → execute" above: one is "how the system is built in layers", the other is "how it divides work at runtime".</mark>
 
-![Four-layer technology stack: hardware (bottom) → software/system → algorithm/cognition → application (top)](images/four-layer-stack.png)
+```mermaid
+flowchart TD
+    A["Application Layer<br>Industry / Home / Special / Medical"] --> B["Algorithm · Cognition Layer<br>CV / LLM·RL / PID·IK"]
+    B --> C["Software · System Layer<br>ROS / Sim / WebSocket·DDS·gRPC"]
+    C --> D["Hardware Layer<br>Motor / Reducer / Sensor / Compute"]
+```
 
 <mark>**📌 Slide supplement 5 | Another "four challenges" (engineering view).** ① **Sim-to-Real Gap** (simulation vs reality) ② **Data sparsity** (robot trial-and-error is expensive, interaction data is scarce) ③ **Generalization** (specialist → generalist) ④ **Safety & interpretability**. Note: these four mountains and the four above (perception ambiguity / long-horizon / compliant control / data scarcity) are **two different lenses** — the former is "engineering deployment", the latter is "capability difficulty". Don't conflate them.</mark>
 
@@ -160,7 +171,7 @@ flowchart TD
 1. **Read this file once** (you are here).
 2. **Hand-draw the two diagrams on paper** (the closed loop + the 5-station map). Don't copy-paste — drawing forces the structure into your head.
 3. **Skim 2 papers (no deep read):** ACT (RSS 2023) and Diffusion Policy (arXiv:2303.04137). Just read the abstract + Figure 1, to recognize them.
-4. **Mirror test (checkpoint):** close everything, speak for 3 minutes: *"Embodied intelligence is ___; the loop is ___; the five stations are ___; the soft robot belongs to station ___."*
+4. **Mirror test (checkpoint):** close everything, speak for 3 minutes: *"Embodied intelligence is ___; the loop is ___; the five stations are ___; the soft robot belongs to station ___"*
 5. **Write 3 sentences** explaining the relation between "body" and "brain".
 6. **(Later)** when you reach the BC episodes, reproduce an ACT demo in LeRobot's simulator. Not today.
 
