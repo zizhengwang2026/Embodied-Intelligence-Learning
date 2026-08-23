@@ -86,7 +86,13 @@ Pack "motor + reduction + driver + feedback" into one module = **servo**; it is 
 
 **There is no best motor, only the most suitable motor** — designing an embodied-AI system is fundamentally a trade-off among cost, performance, and control complexity. Our teaching arm picks the servo precisely because it lowers the hardware/control barrier, letting us focus on the upper-layer AI algorithms.</mark>
 
-![Three-motor comparison: servo (with horn), stepper (with coils), brushless DC (cylindrical) side by side from left to right](images/three-motors.png)
+```mermaid
+flowchart TD
+    Q{"Which motor?"}
+    Q -->|"Precise angle"| S["Servo<br>Closed-loop angle · Cheap · Good for joints"]
+    Q -->|"Low-speed steady"| ST["Stepper<br>Open-loop accurate · High low-speed torque · May lose steps"]
+    Q -->|"High-speed power"| B["Brushless DC (BLDC)<br>Fast · Efficient · Long-life · Needs driver + encoder"]
+```
 
 ---
 
@@ -129,7 +135,7 @@ flowchart LR
 2. **Redraw the actuator-chain diagram from §3 by hand** (command → motor → reduction → output → sensor → controller → back to motor). Don't copy-paste.
 3. **Fill the "three essentials" comparison table** (above); fill the soft-actuator column from your understanding, "TBD" is fine.
 4. **Watch 008–012** (1.0–1.5× speed), focus on 012: notice the encoder servo is already a mini loop.
-5. **Mirror test:** close everything, talk 3 min — *"a robot moves via ___; a reduction gear is ___; an angle sensor is like ___; an encoder servo is already a ___; vs a soft actuator the difference is ___."*
+5. **Mirror test:** close everything, talk 3 min — *"a robot moves via ___; a reduction gear is ___; an angle sensor is like ___; an encoder servo is already a ___; vs a soft actuator the difference is ___"*
 6. **(Later)** actually drive a servo and read its angle — not urgent today, build concepts first.
 
 > ✅ **Definition of "done today":** chain diagram drawn by hand, mirror test passed, three-essentials table filled.
