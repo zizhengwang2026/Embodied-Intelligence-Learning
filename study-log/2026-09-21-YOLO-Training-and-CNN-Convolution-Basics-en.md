@@ -10,7 +10,7 @@
 
 ## 0. One-line summary
 
-> **Watch two curves during training: loss should fall, mAP should rise; if loss falls while mAP stalls, that’s usually overfitting (too little / too uniform data).** And a CNN can “see” because **a convolution kernel is a little template slid across the image** — shallow layers find edges/corners, deeper layers assemble parts like “eye” or “wheel”.
+> In my own words: **Watch two curves during training: loss should fall, mAP should rise; if loss falls while mAP stalls, that’s usually overfitting (too little / too uniform data).** And a CNN can “see” because **a convolution kernel is a little template slid across the image** — shallow layers find edges/corners, deeper layers assemble parts like “eye” or “wheel”.
 
 ---
 
@@ -52,16 +52,24 @@
 
 ---
 
+## 2.5 Supplementary details: what convolution actually computes / how YOLO uses convolution
+
+- A filter (kernel) is typically a small 3×3 window that slides across the image doing “element-wise multiply + sum + bias” → one feature map.
+- Output size: `H_out = (H_in + 2·pad − kernel)/stride + 1` (same for W).
+- Number of channels = number of filters; **weight sharing** makes the parameter count far smaller than a fully-connected layer, and also gives translation invariance.
+- Stacking convolution layers gradually turns “pixels” into “edges → textures → parts → semantics”.
+- YOLO is one-stage: the whole image goes through one CNN backbone, and detections come straight out at the end.
+- The image is split into an S×S grid; each cell predicts B bounding boxes (x,y,w,h,conf) + C class probabilities (see the grid illustration below).
+- Training loss has three parts: coordinate loss + confidence loss + classification loss.
+- After inference, NMS (non-maximum suppression) removes heavily overlapping boxes.
+
+---
+
 ## 3. One diagram: what a kernel does
 
-```mermaid
-flowchart LR
-    IMG[input feature map] --> K[3x3 kernel<br>slide + multiply + sum]
-    K --> FM[output feature map<br>brighter = better match]
-    FM --> L1[shallow: edges/corners]
-    L1 --> L2[mid: parts]
-    L2 --> L3[deep: semantic objects]
-```
+![CNN conv+pool illustration](assets/cnn_conv_pool.svg)
+
+![YOLO grid detection illustration](assets/yolo_grid.svg)
 
 ---
 
