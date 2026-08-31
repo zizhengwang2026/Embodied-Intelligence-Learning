@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="Segoe UI, Arial, 'Microsoft YaHei', sans-serif">
+  <rect width="800" height="460" fill="#ffffff"/>
+  <text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#1a202c">逆运动学（IK）的多解性与难题</text>
+
+  <!-- ============ Left panel: one target -> two solutions ============ -->
+  <text x="225" y="62" text-anchor="middle" font-size="15" fill="#2d3748">同一个目标点 T → 多组关节角</text>
+  <!-- ground -->
+  <line x1="60" y1="360" x2="400" y2="360" stroke="#cbd5e0" stroke-width="2"/>
+  <!-- base -->
+  <circle cx="150" cy="360" r="7" fill="#1a202c"/>
+  <text x="150" y="382" text-anchor="middle" font-size="12" fill="#4a5568">基座 B</text>
+  <!-- target -->
+  <circle cx="290" cy="230" r="7" fill="#e53e3e"/>
+  <text x="300" y="222" font-size="12" fill="#e53e3e">目标 T</text>
+
+  <!-- elbow-UP config: B -> E2(170.6,241.8) -> T -->
+  <line x1="150" y1="360" x2="170.6" y2="241.8" stroke="#2b6cb0" stroke-width="5" stroke-linecap="round"/>
+  <line x1="170.6" y1="241.8" x2="290" y2="230" stroke="#2b6cb0" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="170.6" cy="241.8" r="6" fill="#2b6cb0"/>
+  <text x="120" y="225" font-size="12" fill="#2b6cb0">肘向上</text>
+
+  <!-- elbow-DOWN config: B -> E1(269.4,348.3) -> T -->
+  <line x1="150" y1="360" x2="269.4" y2="348.3" stroke="#dd6b20" stroke-width="5" stroke-linecap="round"/>
+  <line x1="269.4" y1="348.3" x2="290" y2="230" stroke="#dd6b20" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="269.4" cy="348.3" r="6" fill="#dd6b20"/>
+  <text x="285" y="372" font-size="12" fill="#dd6b20">肘向下</text>
+
+  <text x="225" y="410" text-anchor="middle" font-size="12" fill="#4a5568">几何法下：圆与圆交点给出 2 个 elbow 解</text>
+
+  <!-- ============ Right panel: reachability & singularity ============ -->
+  <text x="560" y="62" text-anchor="middle" font-size="15" fill="#2d3748">工作空间边界与奇异点</text>
+  <!-- base -->
+  <circle cx="560" cy="360" r="7" fill="#1a202c"/>
+  <text x="560" y="382" text-anchor="middle" font-size="12" fill="#4a5568">基座 B</text>
+  <!-- reachability circle R = L1 + L2 -->
+  <circle cx="560" cy="360" r="200" fill="none" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="560" y="172" text-anchor="middle" font-size="11" fill="#a0aec0">工作空间边界 (半径 = L1+L2)</text>
+
+  <!-- singular: target ON circle -> arm fully stretched -> 1 solution -->
+  <line x1="560" y1="360" x2="732" y2="258" stroke="#38a169" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="732" cy="258" r="7" fill="#38a169"/>
+  <text x="700" y="248" font-size="12" fill="#38a169">T 在边界上：唯一解（完全伸直）</text>
+
+  <!-- unreachable: target OUTSIDE circle -> 0 solution -->
+  <line x1="560" y1="360" x2="445" y2="161" stroke="#e53e3e" stroke-width="3" stroke-dasharray="4 4"/>
+  <circle cx="445" cy="161" r="6" fill="#e53e3e"/>
+  <text x="430" y="150" font-size="12" fill="#e53e3e">超出工作空间：无解</text>
+
+  <text x="560" y="418" text-anchor="middle" font-size="12" fill="#4a5568">边界内 2 解 · 边界上 1 解（奇异）· 边界外 0 解</text>
+
+  <!-- legend -->
+  <rect x="60" y="430" width="14" height="14" fill="#2b6cb0"/>
+  <text x="80" y="442" font-size="11" fill="#4a5568">肘向上</text>
+  <rect x="160" y="430" width="14" height="14" fill="#dd6b20"/>
+  <text x="180" y="442" font-size="11" fill="#4a5568">肘向下</text>
+  <rect x="270" y="430" width="14" height="14" fill="#38a169"/>
+  <text x="290" y="442" font-size="11" fill="#4a5568">奇异（唯一）</text>
+  <rect x="390" y="430" width="14" height="14" fill="#e53e3e"/>
+  <text x="410" y="442" font-size="11" fill="#4a5568">无解</text>
+</svg>
