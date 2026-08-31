@@ -14,33 +14,30 @@
 ### 2.1 MCP hardware-control effect demo
 The earlier MCP lessons connected "LLM" and "real hardware" through one standard protocol: **the LLM understands intent, the MCP Server translates intent into hardware calls** (read values, send angles, blink lights…). Today we make the whole loop work and confirm "speak naturally → robot executes" holds.
 
-```mermaid
-flowchart LR
-    U[User natural language] --> LLM[LLM]
-    LLM -->|intent + tool call| MCP[MCP Server]
-    MCP -->|drive command| HW[Real hardware: arm/servo/sensor]
-    HW -->|state feedback| MCP
-    MCP -->|observation| LLM
-```
-
 ### 2.2 What ALOHA is (focus on the "methodology")
 ALOHA = **two teacher arms + two student arms** bimanual robot:
 - A human wears the teacher arms to demonstrate → teacher joint angles are recorded;
 - The student arms follow the teacher angles, i.e. "copy the homework";
 - Collect many (observation image, teacher→student angle) pairs → train a policy network so the student arms **autonomously** reproduce the demo → this is the seed of Behavior Cloning (BC).
 
-```mermaid
-flowchart LR
-    subgraph Demo
-      T1[Teacher L] --> REC[Record: obs + action]
-      T2[Teacher R] --> REC
-    end
-    REC --> BC[BC policy network pi]
-    BC --> S1[Student L reproduces]
-    BC --> S2[Student R reproduces]
-```
-
 **Key insight**: ALOHA's value is not "it has four arms" but the transferable "**leader-follower + demonstration + behavior cloning**" framework — you can apply the same "collect demos → learn demos" loop to a single arm, a soft gripper, or DEA actuators.
+
+## 2.5 补充细节：ALOHA bimanual teleop & the MCP demo
+
+- ALOHA is a bimanual teleoperation (teleop) hardware rig: a human wears the leader arms to demonstrate, the follower arms track, collecting high-quality two-hand manipulation demo data.
+- Its relation to BC: the (state, action) pairs collected by teleop are exactly the training material for Behavior Cloning (see Day 10-03).
+- MCP's role in the demo: it wraps the robot arm / gripper / camera as standard Tools, so the upper-layer LLM or script can issue commands and read back state through one unified interface.
+- One line to tie it together: MCP handles "can we conveniently drive the device" → teleop handles "collect good data" → BC handles "learn a policy from the data".
+
+## 3. 一张图
+
+MCP hardware-control loop:
+
+![MCP hardware-control loop](assets/mcp_flow.svg)
+
+ALOHA leader-follower teleop → behavior cloning data flow:
+
+![ALOHA teleop and behavior cloning data flow](assets/bc_flow.svg)
 
 ## 三、动手操作（跑通才算学会）
 
