@@ -17,13 +17,6 @@ BC is the simplest form of imitation learning: **treat the expert's (your) demon
 - Output: action (joint angle, voltage, displacement)
 - Nature: **supervised learning** (has a ground-truth answer = expert action)
 
-```mermaid
-flowchart LR
-    D[Expert demo] --> P[(obs o, action a)]
-    P --> T[Train policy pi: o->a]
-    T --> PI[Deploy: see o, output a]
-```
-
 ### 2.2 BC vs RL (the most important comparison in 60 days)
 | Dimension | Behavior Cloning BC | Reinforcement Learning RL |
 |-----------|---------------------|---------------------------|
@@ -34,6 +27,18 @@ flowchart LR
 | Typical issue | Distribution shift, sparse demo | Reward design hard, unstable training |
 
 One line: **BC = "copy homework", RL = "do exercises yourself to find the optimum"**.
+
+## 2.5 补充细节：What Behavior Cloning really is / vs RL
+
+- Behavior Cloning (BC) = supervised learning: the dataset {(s,a)} comes from human demonstrations; we directly learn π(a|s) to imitate the expert.
+- Difference from RL: BC does not explore on its own nor learn by reward trial-and-error — it only "copies" expert actions; RL optimizes via reward-signal trial-and-error (covered in later Days).
+- Where data comes from: teleoperation (teleop) collection — state s is usually an image / joint angles, action a is the demonstrator's operation; the LeRobot dataset follows this format.
+- Fatal flaw · distribution shift (compounding error): at test time the state drifts out of the training distribution; small errors accumulate frame by frame, eventually "drifting" into a big mistake.
+- Mitigation: lots of high-quality demonstrations; advanced methods like ACT (Action Chunking Transformer) and diffusion policy improve robustness.
+
+## 3. 一张图
+
+![End-to-end Behavior Cloning BC flow](assets/bc_flow.svg)
 
 ## 三、动手操作（跑通才算学会）
 
