@@ -24,17 +24,21 @@
 ### 2.2 The RL loop
 Agent sees State → outputs Action → environment becomes new State and gives Reward → Agent learns "which Action maximizes cumulative Reward".
 
-```mermaid
-flowchart LR
-    A[Agent] -->|Action a| E[Environment]
-    E -->|new State s' + Reward r| A
-    A -->|see State s| E
-```
-
 ### 2.3 MDP (Markov Decision Process)
 MDP means: **the next state depends only on "current state + current action", not the past** (Markov property / "memoryless").
 - Math: s' ~ P(s'|s,a), transition probability depends only on (s,a).
 - Meaning: describe "current state" fully enough and you can ignore history; the problem is solvable.
+
+## 2.5 补充细节：RL's five key concepts & MDP
+
+- Five key concepts: state s (the world the agent sees), action a (the choices it can make), reward r (the score from the environment), policy π(a|s) (which action to pick in which state), value V(s) or Q(s,a) (how valuable a state/action is).
+- MDP formalism: the 5-tuple (S, A, P, R, γ); P is the state-transition probability, R is the reward, γ∈[0,1] is the discount factor.
+- Objective: maximize the expected "cumulative discounted reward" E[Σ γᵗ rᵗ] — the further in the future, the lower the weight.
+- Two mainstream families: value-function methods (learn Q/V then derive a policy) and policy-gradient methods (optimize π directly); BC is imitation, RL is trial-and-error optimization.
+
+## 3. 一张图
+
+![MDP Markov Decision Process loop](assets/mdp_loop.svg)
 
 ## 三、动手操作（跑通才算学会）
 
