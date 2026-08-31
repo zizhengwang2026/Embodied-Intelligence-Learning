@@ -10,7 +10,7 @@
 
 ## 0. One-line summary
 
-> **The full CNN forward pass = convolution (extract features) → activation (nonlinearity) → pooling (downsample, add robustness) → flatten (to 1-D) → fully connected (decide).** On the data side, write down in advance **what to collect, how much, how to label, and which scenarios** — collecting without a plan means discovering mid-training that your data is insufficient.
+> In my own words: **The full CNN forward pass = convolution (extract features) → activation (nonlinearity) → pooling (downsample, add robustness) → flatten (to 1-D) → fully connected (decide).** On the data side, write down in advance **what to collect, how much, how to label, and which scenarios** — collecting without a plan means discovering mid-training that your data is insufficient.
 
 ---
 
@@ -40,20 +40,18 @@ Write down four things before you start:
 
 ---
 
+## 2.5 Supplementary details: pooling and flattening
+
+- Pooling: typically 2×2 max pooling takes the max within the window → spatial size halves, parameters shrink further, keeps the most salient features, and adds translation invariance.
+- stride usually equals the window size (non-overlapping).
+- Flatten: unroll the multi-dim feature map into a 1-D vector so it can feed a fully-connected (FC) layer for the classification/detection head.
+- Data-collection needs: training your own model = you need sufficient labeled data; the course’s low-effort approach is to start with “image synthesis / auto-labeling”, then correct manually.
+
+---
+
 ## 3. One diagram: the full CNN forward pass
 
-```mermaid
-flowchart LR
-    IN[input image] --> C1[conv]
-    C1 --> A1[ReLU]
-    A1 --> P1[pool]
-    P1 --> C2[conv]
-    C2 --> A2[ReLU]
-    A2 --> P2[pool]
-    P2 --> FL[flatten]
-    FL --> FC[fully connected]
-    FC --> OUT[classification / detection]
-```
+![CNN conv+pool illustration](assets/cnn_conv_pool.svg)
 
 ---
 
