@@ -30,13 +30,17 @@ Q(s,a) <- Q(s,a) + α [ r + γ·max_a' Q(s',a') - Q(s,a) ]
 ### 2.3 Reward backpropagates along the path
 Because each step uses "next step's max Q", **the terminal reward propagates backward step by step**, so far states gradually learn "this path eventually pays".
 
-```mermaid
-flowchart LR
-    S[State s] -->|action a| S2[State s']
-    S2 -->|reward r| UP[Update Q(s,a)]
-    S2 -->|max Q(s',a')| UP
-    UP -->|γ discount backprop| S
-```
+## 2.5 补充细节：Q-learning tabular method
+
+- Tabular method: store Q(s,a) as a lookup table; fits discrete, not-too-large state/action spaces.
+- Update rule (Bellman): `Q(s,a) ← Q(s,a) + α[ r + γ·max_a' Q(s',a') − Q(s,a) ]`.
+- Meaning: use "the max Q reachable in the next state" as the target, pull the current estimate toward it; α is the learning rate, γ is the discount.
+- off-policy: the target uses the greedy action corresponding to "next-state max Q"; it does not require the current step to actually follow it.
+- Exploration: ε-greedy — with probability ε pick a random action to explore; with 1−ε pick the greedy max-Q action.
+
+## 3. 一张图
+
+![Q-learning tabular method](assets/qlearning_table.svg)
 
 ## 三、动手操作（跑通才算学会）
 
