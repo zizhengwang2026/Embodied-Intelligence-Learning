@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" font-family="Segoe UI, Arial, 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#718096"/>
+    </marker>
+  </defs>
+  <rect width="700" height="320" fill="#ffffff"/>
+  <text x="350" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a202c">MCP：给大模型统一接外部工具与数据的协议</text>
+
+  <!-- client -->
+  <rect x="40" y="110" width="170" height="80" rx="10" fill="#ebf4ff" stroke="#2b6cb0" stroke-width="2"/>
+  <text x="125" y="140" text-anchor="middle" font-size="14" fill="#1a202c">Host / Client</text>
+  <text x="125" y="162" text-anchor="middle" font-size="12" fill="#4a5568">大模型(LLM)</text>
+  <text x="125" y="180" text-anchor="middle" font-size="11" fill="#718096">调用方</text>
+
+  <!-- server -->
+  <rect x="265" y="110" width="170" height="80" rx="10" fill="#fffaf0" stroke="#dd6b20" stroke-width="2"/>
+  <text x="350" y="140" text-anchor="middle" font-size="14" fill="#1a202c">MCP Server</text>
+  <text x="350" y="162" text-anchor="middle" font-size="12" fill="#4a5568">暴露能力</text>
+  <text x="350" y="180" text-anchor="middle" font-size="11" fill="#718096">JSON-RPC</text>
+
+  <!-- tools -->
+  <rect x="490" y="110" width="170" height="80" rx="10" fill="#f0fff4" stroke="#38a169" stroke-width="2"/>
+  <text x="575" y="140" text-anchor="middle" font-size="14" fill="#1a202c">Tools / 资源</text>
+  <text x="575" y="162" text-anchor="middle" font-size="12" fill="#4a5568">硬件/API/文件</text>
+  <text x="575" y="180" text-anchor="middle" font-size="11" fill="#718096">被调用方</text>
+
+  <line x1="210" y1="150" x2="263" y2="150" stroke="#718096" stroke-width="2" marker-end="url(#ar)"/>
+  <line x1="435" y1="150" x2="488" y2="150" stroke="#718096" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- three primitives -->
+  <text x="350" y="232" text-anchor="middle" font-size="13" fill="#1a202c">三种原语：</text>
+  <rect x="90" y="248" width="150" height="48" rx="8" fill="#f7fafc" stroke="#cbd5e0"/>
+  <text x="165" y="270" text-anchor="middle" font-size="12" fill="#1a202c">Tools 工具调用</text>
+  <text x="165" y="288" text-anchor="middle" font-size="11" fill="#718096">让模型「做事」</text>
+  <rect x="275" y="248" width="150" height="48" rx="8" fill="#f7fafc" stroke="#cbd5e0"/>
+  <text x="350" y="270" text-anchor="middle" font-size="12" fill="#1a202c">Resources 资源</text>
+  <text x="350" y="288" text-anchor="middle" font-size="11" fill="#718096">给模型「读数据」</text>
+  <rect x="460" y="248" width="150" height="48" rx="8" fill="#f7fafc" stroke="#cbd5e0"/>
+  <text x="535" y="270" text-anchor="middle" font-size="12" fill="#1a202c">Prompts 提示</text>
+  <text x="535" y="288" text-anchor="middle" font-size="11" fill="#718096">给模型「模板」</text>
+
+  <text x="350" y="312" text-anchor="middle" font-size="11" fill="#a0aec0">= 把「接 SDK」变成「接标准协议」，换个模型/工具不用重写对接代码</text>
+</svg>
