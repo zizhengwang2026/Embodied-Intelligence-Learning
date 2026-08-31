@@ -21,15 +21,6 @@ Key techniques:
 - **Experience Replay**: store traversed (s,a,r,s') and sample randomly to learn, breaking correlation and stabilizing training.
 - **Target Network**: a "slow-updated" copy computes the TD target, avoiding "chasing itself" oscillation.
 
-```mermaid
-flowchart LR
-    E[Env] -->|s,a,r,s'| RB[Replay buffer]
-    RB -->|sample| T[Train Qθ]
-    T -->|action| E
-    T -->|slow copy| TN[Target net computes TD target]
-    TN --> T
-```
-
 ### 2.2 HuggingFace (HF)
 The world's largest **model + dataset + space** community: download pretrained models (vision/language/RL), upload your own, build demos instantly with Spaces. Indispensable for embodied AI.
 
@@ -56,6 +47,17 @@ flowchart LR
     DATA --> LEARN[BC or RL learning]
     LEARN --> ARM
 ```
+
+## 2.6 补充细节：DQN approximates Q with a network
+
+- DQN = use a CNN as the function approximator, mapping raw image pixels s directly to a Q-value per action, dropping hand-crafted features.
+- Two key stabilization tricks: ① Experience Replay — store transitions (s,a,r,s') in a pool and sample randomly, breaking temporal correlation between samples; ② Target Network — a slowly-updated copy computes the target Q, avoiding "chasing itself" oscillation.
+- Loss: TD-error mean square `(r + γ·max_a' Q_target(s',a') − Q(s,a))²`.
+- Relation to Q-learning: swap the table for a network, going from "small discrete problems" to "high-dimensional image problems".
+
+## 3. 一张图
+
+![DQN deep network architecture](assets/dqn_arch.svg)
 
 ## 三、动手操作（跑通才算学会）
 
