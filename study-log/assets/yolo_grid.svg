@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" font-family="Segoe UI, Arial, 'Microsoft YaHei', sans-serif">
+  <rect width="700" height="360" fill="#ffffff"/>
+  <text x="350" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a202c">YOLO：把图像切成 S×S 网格，每格直接预测框与类别</text>
+
+  <!-- image frame -->
+  <rect x="60" y="60" width="240" height="240" fill="#f7fafc" stroke="#cbd5e0" stroke-width="2"/>
+  <!-- grid lines 4x4 -->
+  <g stroke="#cbd5e0" stroke-width="1">
+    <line x1="120" y1="60" x2="120" y2="300"/>
+    <line x1="180" y1="60" x2="180" y2="300"/>
+    <line x1="240" y1="60" x2="240" y2="300"/>
+    <line x1="60" y1="120" x2="300" y2="120"/>
+    <line x1="60" y1="180" x2="300" y2="180"/>
+    <line x1="60" y1="240" x2="300" y2="240"/>
+  </g>
+  <!-- highlighted responsible cell (row 1, col 2 => cell at x120-180,y120-180) -->
+  <rect x="120" y="120" width="60" height="60" fill="#feebc8" stroke="#dd6b20" stroke-width="2"/>
+  <!-- object inside -->
+  <circle cx="150" cy="150" r="14" fill="#3182ce"/>
+  <!-- predicted bounding box -->
+  <rect x="132" y="132" width="44" height="40" fill="none" stroke="#e53e3e" stroke-width="2.5"/>
+  <text x="154" y="186" text-anchor="middle" font-size="11" fill="#e53e3e">边界框 (x,y,w,h)</text>
+
+  <text x="180" y="320" text-anchor="middle" font-size="12" fill="#718096">每个网格单元预测 B 个框 + 置信度 + 类别概率</text>
+
+  <!-- right: prediction vector -->
+  <rect x="380" y="80" width="280" height="150" rx="8" fill="#ebf4ff" stroke="#2b6cb0" stroke-width="2"/>
+  <text x="400" y="108" font-size="13" fill="#1a202c">单元输出向量（每格）：</text>
+  <text x="400" y="132" font-size="12" fill="#2d3748">B×(x, y, w, h, conf)</text>
+  <text x="400" y="154" font-size="12" fill="#2d3748">+ C 个类别概率</text>
+  <text x="400" y="178" font-size="12" fill="#2d3748">例：B=3, C=80</text>
+  <text x="400" y="202" font-size="12" fill="#4a5568">→ 一次前向即出全图检测</text>
+
+  <!-- NMS note -->
+  <rect x="380" y="250" width="280" height="70" rx="8" fill="#fffaf0" stroke="#dd6b20" stroke-width="2"/>
+  <text x="400" y="276" font-size="13" fill="#1a202c">后处理：NMS 去重叠</text>
+  <text x="400" y="300" font-size="12" fill="#4a5568">按置信度排序，删掉高重叠框</text>
+
+  <text x="350" y="348" text-anchor="middle" font-size="12" fill="#718096">YOLO = You Only Look Once：单网络单次前向完成「定位 + 分类」。</text>
+</svg>
