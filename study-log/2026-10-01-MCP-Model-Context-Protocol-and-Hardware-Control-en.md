@@ -53,7 +53,7 @@ Typical loop:
 ## 2.5 补充细节：What MCP is / the three primitives
 
 - MCP = Model Context Protocol, an open protocol for uniformly connecting external tools and data to an LLM, communicating over JSON-RPC underneath.
-- Three parties: Host/Client (runs the model, initiates calls), MCP Server (exposes capability), Tools & resources (the called side, e.g. hardware/API/files).
+- Two roles: Host/Client (runs the model, initiates calls) and MCP Server (exposes capability); the Server provides three capability primitives:
 - Three primitives: Tools (let the model "do things", callable), Resources (let the model "read data"), Prompts (give the model "prompt templates").
 - Value: instead of writing a separate SDK adapter for every tool, everything plugs into one standard protocol; swapping models or tools rarely means rewriting integration code.
 - Connecting hardware: the server wraps the arm / gripper / camera as Tools, so the model can "say one sentence" to drive real devices (see the ALOHA demo in the next lecture).
