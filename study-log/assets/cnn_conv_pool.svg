@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" font-family="Segoe UI, Arial, 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#718096"/>
+    </marker>
+  </defs>
+  <rect width="700" height="300" fill="#ffffff"/>
+  <text x="350" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a202c">CNN：卷积提取局部特征 + 池化降维</text>
+
+  <rect x="30" y="90" width="130" height="80" rx="8" fill="#ebf4ff" stroke="#2b6cb0" stroke-width="2"/>
+  <text x="95" y="120" text-anchor="middle" font-size="13" fill="#1a202c">输入</text>
+  <text x="95" y="142" text-anchor="middle" font-size="13" fill="#1a202c">5×5×3</text>
+  <text x="95" y="162" text-anchor="middle" font-size="11" fill="#4a5568">H×W×C</text>
+
+  <line x1="160" y1="130" x2="200" y2="130" stroke="#718096" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="180" y="118" text-anchor="middle" font-size="10" fill="#718096">3×3</text>
+
+  <rect x="205" y="90" width="150" height="80" rx="8" fill="#ebf4ff" stroke="#2b6cb0" stroke-width="2"/>
+  <text x="280" y="116" text-anchor="middle" font-size="13" fill="#1a202c">卷积 + ReLU</text>
+  <text x="280" y="138" text-anchor="middle" font-size="12" fill="#4a5568">滑窗加权求和</text>
+  <text x="280" y="158" text-anchor="middle" font-size="12" fill="#4a5568">输出 5×5×K</text>
+
+  <line x1="355" y1="130" x2="395" y2="130" stroke="#718096" stroke-width="2" marker-end="url(#ar)"/>
+
+  <rect x="400" y="90" width="140" height="80" rx="8" fill="#fffaf0" stroke="#dd6b20" stroke-width="2"/>
+  <text x="470" y="116" text-anchor="middle" font-size="13" fill="#1a202c">池化 2×2</text>
+  <text x="470" y="138" text-anchor="middle" font-size="12" fill="#4a5568">stride=2</text>
+  <text x="470" y="158" text-anchor="middle" font-size="12" fill="#4a5568">取最大/平均</text>
+
+  <line x1="540" y1="130" x2="580" y2="130" stroke="#718096" stroke-width="2" marker-end="url(#ar)"/>
+
+  <rect x="585" y="90" width="90" height="80" rx="8" fill="#f0fff4" stroke="#38a169" stroke-width="2"/>
+  <text x="630" y="120" text-anchor="middle" font-size="13" fill="#1a202c">下采样</text>
+  <text x="630" y="142" text-anchor="middle" font-size="13" fill="#1a202c">3×3×K</text>
+  <text x="630" y="162" text-anchor="middle" font-size="11" fill="#4a5568">空间减半</text>
+
+  <text x="350" y="232" text-anchor="middle" font-size="13" fill="#2d3748">卷积：每个滤波器在局部感受野上做「加权求和 + 偏置」，提取边缘/纹理等特征。</text>
+  <text x="350" y="256" text-anchor="middle" font-size="13" fill="#2d3748">池化：用 2×2 窗口压缩空间尺寸，减少参数、增强平移不变性。</text>
+  <text x="350" y="280" text-anchor="middle" font-size="12" fill="#718096">输出张量随网络加深：空间变小、通道(K)变多 → 从「像素」到「语义」。</text>
+</svg>
