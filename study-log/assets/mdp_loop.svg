@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" font-family="Segoe UI, Arial, 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#718096"/>
+    </marker>
+  </defs>
+  <rect width="700" height="320" fill="#ffffff"/>
+  <text x="350" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a202c">强化学习循环：智能体 ↔ 环境 (MDP)</text>
+
+  <!-- agent -->
+  <rect x="70" y="120" width="150" height="80" rx="10" fill="#ebf4ff" stroke="#2b6cb0" stroke-width="2"/>
+  <text x="145" y="150" text-anchor="middle" font-size="15" fill="#1a202c">智能体</text>
+  <text x="145" y="172" text-anchor="middle" font-size="12" fill="#4a5568">策略 π(a|s)</text>
+  <text x="145" y="190" text-anchor="middle" font-size="11" fill="#718096">选动作</text>
+
+  <!-- environment -->
+  <rect x="470" y="120" width="160" height="80" rx="10" fill="#fffaf0" stroke="#dd6b20" stroke-width="2"/>
+  <text x="550" y="150" text-anchor="middle" font-size="15" fill="#1a202c">环境</text>
+  <text x="550" y="172" text-anchor="middle" font-size="12" fill="#4a5568">状态转移 P</text>
+  <text x="550" y="190" text-anchor="middle" font-size="11" fill="#718096">给奖励/下一态</text>
+
+  <!-- arrows -->
+  <line x1="220" y1="145" x2="468" y2="145" stroke="#718096" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="344" y="135" text-anchor="middle" font-size="12" fill="#3182ce">动作 a</text>
+
+  <line x1="470" y1="175" x2="222" y2="175" stroke="#718096" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="344" y="195" text-anchor="middle" font-size="12" fill="#38a169">状态 s' , 奖励 r</text>
+
+  <!-- labels -->
+  <text x="145" y="240" text-anchor="middle" font-size="12" fill="#4a5568">观测当前状态 s</text>
+  <text x="550" y="240" text-anchor="middle" font-size="12" fill="#4a5568">s' = P(s'|s,a)</text>
+
+  <text x="350" y="278" text-anchor="middle" font-size="13" fill="#2d3748">MDP = (S, A, P, R, γ)；目标：最大化累计折扣奖励 E[ Σ γᵗ rₜ ]</text>
+  <text x="350" y="300" text-anchor="middle" font-size="12" fill="#718096">γ∈[0,1] 折扣因子：越未来的奖励权重越低。试错中学会「长期更划算」的动作。</text>
+</svg>
