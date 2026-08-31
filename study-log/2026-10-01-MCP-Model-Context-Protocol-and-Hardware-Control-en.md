@@ -10,7 +10,7 @@
 
 ## 0. One-line summary
 
-> **MCP = the “USB standard” for plugging peripherals into an LLM**: it defines how tools describe themselves, how the model discovers them, how it calls them, and how results come back — so the model can **autonomously choose and invoke tools** to act on the real world. It is not an ordinary API wrapper: with a plain API, *you* decide what to call; with MCP, **the model decides**.
+> My own understanding: **MCP = the “USB standard” for plugging peripherals into an LLM**: it defines how tools describe themselves, how the model discovers them, how it calls them, and how results come back — so the model can **autonomously choose and invoke tools** to act on the real world. It is not an ordinary API wrapper: with a plain API, *you* decide what to call; with MCP, **the model decides**.
 
 ---
 
@@ -50,21 +50,17 @@ Typical loop:
 2. **The tool list is documentation written for the model** — clearer text, better calls.
 3. **Everything downstream of the model needs validation and guardrails**, especially moving hardware.
 
----
+## 2.5 补充细节：What MCP is / the three primitives
+
+- MCP = Model Context Protocol, an open protocol for uniformly connecting external tools and data to an LLM, communicating over JSON-RPC underneath.
+- Three parties: Host/Client (runs the model, initiates calls), MCP Server (exposes capability), Tools & resources (the called side, e.g. hardware/API/files).
+- Three primitives: Tools (let the model "do things", callable), Resources (let the model "read data"), Prompts (give the model "prompt templates").
+- Value: instead of writing a separate SDK adapter for every tool, everything plugs into one standard protocol; swapping models or tools rarely means rewriting integration code.
+- Connecting hardware: the server wraps the arm / gripper / camera as Tools, so the model can "say one sentence" to drive real devices (see the ALOHA demo in the next lecture).
 
 ## 3. One diagram: the MCP loop
 
-```mermaid
-flowchart LR
-    U[user: grasp the red block] --> H[MCP host + LLM]
-    S[MCP server tool list] --> H
-    H -->|model picks grasp| C[MCP client]
-    C -->|callTool| S
-    S --> HW[real arm moves]
-    HW --> R[result returned]
-    R --> H
-    H --> U2[reply: grasped]
-```
+![MCP interaction loop](assets/mcp_flow.svg)
 
 ---
 
