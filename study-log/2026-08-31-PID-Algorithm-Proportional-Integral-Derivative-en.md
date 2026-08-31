@@ -21,6 +21,15 @@ P first, then I, then D. Get P to "a bit oscillatory but tracks", add I to kill 
 ### 2.3 Three curves in the simulator
 X-axis = time; Y-axis = target (straight line), actual (curve), error. A good PID: actual quickly, smoothly, offset-free sticks to the target.
 
+## 2.5 Supplementary details: what each PID term governs
+
+- Control law: `u(t) = Kp·e(t) + Ki·∫₀ᵗ e(τ)dτ + Kd·de/dt`, with error `e = r − y` (r = setpoint, y = actual).
+- P (Proportional): the bigger the error, the bigger the output — fast response, but **P alone leaves a steady-state error (offset)** and never quite reaches the target.
+- I (Integral): slowly pays off the accumulated historical error; its job is specifically **to eliminate the offset**; too strong and you get overshoot and oscillation.
+- D (Derivative): watches the **rate of change** of the error — when the trend is about to overshoot it brakes early, providing **damping** that suppresses oscillation.
+- Tuning recipe (as I remember it): start with Kp only and push toward the oscillation edge, then add Ki to kill the offset, finally add Kd to damp.
+- Relation to robot arms: position / velocity loops commonly use PID; a servo's angle closed loop is the textbook PID application.
+
 ## 3. Hands-on
 Stabilize an "oscillating system" in the PID simulator: P only → watch oscillation → add D to damp it → add I to kill the offset. Record the curves for each parameter set.
 
@@ -38,20 +47,9 @@ State orally what each PID letter governs; independently stabilize a 2nd-order s
 - Feedback: estimate deformation via flexible strain/capacitance sensing for the loop — harder and noisier than a rigid encoder → be extra careful with the D term.
 - Link: the servo PID tuning experience of Day 19–20 transfers directly to soft-actuator force/deformation control; only the feedback and model are harder.
 
-```mermaid
-flowchart LR
-    R[Target] --> X[Comparator: error e]
-    X --> P[P proportional: now off by?]
-    X --> I[I integral: accumulated past error]
-    X --> D[D derivative: trend]
-    P --> S[Sum]
-    I --> S
-    D --> S
-    S --> U[Control output u]
-    U --> A[Actuator / arm]
-    A --> F[Sensor]
-    F --> X
-```
+## 7. One diagram: PID closed loop
+
+![PID closed-loop control illustration](assets/pid_loop.svg)
 
 ---
 *Strictly follows the 60-day plan Day 18 (P6): episodes 070–073. Zero military content.*
