@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280" font-family="Segoe UI, Arial, 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#718096"/>
+    </marker>
+  </defs>
+  <rect width="700" height="280" fill="#ffffff"/>
+  <text x="350" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a202c">DQN：用卷积网络近似 Q 函数（从像素学价值）</text>
+
+  <rect x="30" y="90" width="110" height="60" rx="8" fill="#ebf4ff" stroke="#2b6cb0" stroke-width="2"/>
+  <text x="85" y="118" text-anchor="middle" font-size="12" fill="#1a202c">图像帧</text>
+  <text x="85" y="138" text-anchor="middle" font-size="11" fill="#4a5568">s (像素)</text>
+
+  <line x1="140" y1="120" x2="178" y2="120" stroke="#718096" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="183" y="90" width="140" height="60" rx="8" fill="#ebf4ff" stroke="#2b6cb0" stroke-width="2"/>
+  <text x="253" y="116" text-anchor="middle" font-size="13" fill="#1a202c">CNN 卷积堆</text>
+  <text x="253" y="138" text-anchor="middle" font-size="11" fill="#4a5568">提特征</text>
+
+  <line x1="323" y1="120" x2="361" y2="120" stroke="#718096" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="366" y="90" width="110" height="60" rx="8" fill="#fffaf0" stroke="#dd6b20" stroke-width="2"/>
+  <text x="421" y="116" text-anchor="middle" font-size="12" fill="#1a202c">展平</text>
+  <text x="421" y="138" text-anchor="middle" font-size="11" fill="#4a5568">Flatten</text>
+
+  <line x1="476" y1="120" x2="514" y2="120" stroke="#718096" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="519" y="90" width="150" height="60" rx="8" fill="#f0fff4" stroke="#38a169" stroke-width="2"/>
+  <text x="594" y="116" text-anchor="middle" font-size="12" fill="#1a202c">全连接</text>
+  <text x="594" y="138" text-anchor="middle" font-size="11" fill="#4a5568">FC → Q值</text>
+
+  <text x="350" y="200" text-anchor="middle" font-size="13" fill="#2d3748">输出：每个动作一个 Q(s,a)，选最大者作为动作。</text>
+  <text x="350" y="224" text-anchor="middle" font-size="12" fill="#718096">稳定技巧：经验回放 (Replay Buffer) 打破相关性 + 目标网络 (Target Net) 固定目标。</text>
+  <text x="350" y="248" text-anchor="middle" font-size="12" fill="#718096">DQN 把「表格 Q」换成「网络 Q」，可处理高维(图像)状态。</text>
+</svg>
