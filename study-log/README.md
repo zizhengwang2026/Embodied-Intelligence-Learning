@@ -146,7 +146,7 @@
 - **Day 46**（2026-09-28）：[2026-09-28-Ollama-Installation-Model-Loading-and-Commands-en](2026-09-28-Ollama-Installation-Model-Loading-and-Commands-en.md)
 - **Day 46**（2026-09-28）：[2026-09-28-Ollama安装模型加载与常用命令-zh](2026-09-28-Ollama安装模型加载与常用命令-zh.md)
 - **Day 47**（2026-09-29）：[2026-09-29-Hyperparameter-Tuning-Chatbox-and-Ollama-API-en](2026-09-29-Hyperparameter-Tuning-Chatbox-and-Ollama-API-en.md)
-- **Day 47**（2026-09-29）：[2026-09-29-大模型超参调整与代码调用Ollama-zh](2026-09-09-大模型超参调整与代码调用Ollama-zh.md)
+- **Day 47**（2026-09-29）：[2026-09-29-大模型超参调整与代码调用Ollama-zh](2026-09-29-大模型超参调整与代码调用Ollama-zh.md)
 - **Day 48**（2026-09-30）：[2026-09-30-Web-and-GUI-Chat-Assistant-en](2026-09-30-Web-and-GUI-Chat-Assistant-en.md)
 - **Day 48**（2026-09-30）：[2026-09-30-网页与GUI聊天助手-zh](2026-09-30-网页与GUI聊天助手-zh.md)
 - **Day 49**（2026-10-01）：[2026-10-01-MCP-Model-Context-Protocol-and-Hardware-Control-en](2026-10-01-MCP-Model-Context-Protocol-and-Hardware-Control-en.md)
