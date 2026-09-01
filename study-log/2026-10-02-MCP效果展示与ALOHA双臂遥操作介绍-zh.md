@@ -25,6 +25,7 @@ ALOHA = **两台主臂（teacher）+ 两台从臂（student）** 的双手机器
 ## 2.5 补充细节：ALOHA 双臂遥操作与 MCP 演示
 
 - ALOHA 是一套双臂遥操作(teleop)硬件：人戴主臂示范，从臂跟随，用来采集高质量双手操作示教数据。
+- **Action Chunking（动作块 / ACT 技术）**：ALOHA 后续提出的 ACT（Action Chunking Transformer）核心思想是**一次预测未来一整段动作序列（一个“动作块”）而非逐单步动作**，降低双臂时序误差累积、提升协调稳定性——这正是 Day 10-03 提到的“advanced methods like ACT (Action Chunking Transformer)”所指向的具体技术。
 - 它和 BC 的关系：遥操作采集的 (状态,动作) 对，正是行为克隆(见 Day 10-03)的训练原料。
 - MCP 在演示里的作用：把机械臂/夹爪/相机等封装成标准 Tool，让上层大模型或脚本用统一接口下发指令、读回状态。
 - 一句话串起来：MCP 管「能不能方便调设备」→ 遥操作管「采到好数据」→ BC 管「从数据学出策略」。
