@@ -2,14 +2,14 @@
 
 > 配套视频：B 站《黑马程序员 · 具身智能》全套 **223 节**。
 
-> 本仓库 `study-log/` 含 **Day 1–60 共 120 篇**复习笔记，每讲中英双语各一篇（zh / en）。
+> 本仓库 `study-log/` 含 **Day 1–63 共 126 篇**复习笔记（其中 Day 61–63 为课程完结后的自学延伸章节），每讲中英双语各一篇（zh / en）。
 
 > 严格按 `study-plan-60d.md` 的集号映射编写；全文零军事内容；含 Mermaid 图、易错点与 DEA 轻量交叉链接。
 
-> 注：下方「Day N」对齐 `study-plan-60d.md`（计划 Day）。2026-08-15 当天含两讲——「具身智能定义与研究版图」为 Day 1（P1），「硬件实体」为 Day 2（P2），其余按日期顺序顺延。
+> 注：下方「Day N」对齐 `study-plan-60d.md`（计划 Day）。2026-08-15 当天含两讲——「具身智能定义与研究版图」为 Day 1（P1），「硬件实体」为 Day 2（P2），其余按日期顺序顺延。Day 61–63 为 223 节完结后的**自学延伸章节**，无对应新集号，承接 Day 51–60 的工程落地与研究衔接。
 
 
-## 阶段总览（P1–P11）
+## 阶段总览（P1–P11 + 扩展）
 
 | 阶段 | 主题 | 集号范围 | 天数 | 篇数 |
 |------|------|---------|------|------|
@@ -24,6 +24,7 @@
 | P9 | 语音 / 大模型 / Ollama / MCP | 161–187 | Day 42–50 | 18 |
 | P10 | 行为克隆 BC（ALOHA / 数据采集 / 训练） | 188–207 | Day 51–56 | 12 |
 | P11 | 强化学习 / 遗传神经网络 | 208–223 | Day 57–60 | 8 |
+| 扩展 | 自学延伸（Sim-to-Real / 综合项目 / 研究方向衔接） | — | Day 61–63 | 6 |
 
 ## 笔记清单（按阶段）
 
@@ -180,9 +181,20 @@
 - **Day 60**（2026-10-12）：[2026-10-12-DQN-Deep-RL-HuggingFace-and-Genetic-NN-Graduation-en](2026-10-12-DQN-Deep-RL-HuggingFace-and-Genetic-NN-Graduation-en.md)
 - **Day 60**（2026-10-12）：[2026-10-12-DQN深度强化学习与HuggingFace及遗传神经网络结营-zh](2026-10-12-DQN深度强化学习与HuggingFace及遗传神经网络结营-zh.md)
 
+### 扩展章节 · 自学延伸（Day 61–63，无对应课程集号，承接 Day 51–60 工程落地）
+
+> 以下三章为 223 节课程完结后的**自学延伸**，不对应新集号，承接前面的 BC/RL/Sim-to-Real 知识做工程与研究衔接；全文零军事内容，DEA 交叉在本章升为主线。
+
+- **Day 61**（2026-10-13）：[2026-10-13-Sim-to-Real-Transfer-and-Domain-Randomization-en](2026-10-13-Sim-to-Real-Transfer-and-Domain-Randomization-en.md)
+- **Day 61**（2026-10-13）：[2026-10-13-仿真到真机迁移Sim-to-Real与域随机化-zh](2026-10-13-仿真到真机迁移Sim-to-Real与域随机化-zh.md)
+- **Day 62**（2026-10-14）：[2026-10-14-End-to-End-Deployment-Review-and-Integrated-Project-Design-en](2026-10-14-End-to-End-Deployment-Review-and-Integrated-Project-Design-en.md)
+- **Day 62**（2026-10-14）：[2026-10-14-端到端部署复盘与综合项目设计-zh](2026-10-14-端到端部署复盘与综合项目设计-zh.md)
+- **Day 63**（2026-10-15）：[2026-10-15-Soft-Actuators-and-Embodied-AI-Research-Direction-DEA-en](2026-10-15-Soft-Actuators-and-Embodied-AI-Research-Direction-DEA-en.md)
+- **Day 63**（2026-10-15）：[2026-10-15-软体执行器与具身智能研究方向衔接DEA-zh](2026-10-15-软体执行器与具身智能研究方向衔接DEA-zh.md)
+
 
 ---
 
-*共 **120 篇**（Day 1–60，每讲中英各一）。计划详见根目录 `study-plan-60d.md`。*
+*共 **126 篇**（Day 1–63，每讲中英各一；其中 Day 61–63 为自学延伸章节）。计划详见根目录 `study-plan-60d.md`。*
 
 *本系列为通用具身智能学习笔记，不是军事专题。*
