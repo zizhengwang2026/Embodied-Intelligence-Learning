@@ -1,8 +1,7 @@
----
 # Lecture 14 — Inverse Kinematics: Multiplicity & Other Difficulties
 
 > **Meta**
-> - Date: 2026-08-27 (Wednesday)
+> - Date: 2026-08-27 (Thursday)
 > - Lecture / Day: Lecture 14 — Day 14 of the study plan
 > - Plan anchor: `study-plan-60d.md` → **P5 Kinematics (IK)**, course episodes **057–059**
 > - Goal of today: IK = given end target pose, solve joint angles; focus on WHY IK is **multi-solution**, plus singularities / joint limits / no-solution pitfalls. Builds on Day 13 FK matrices.
@@ -97,4 +96,3 @@ This diagram shows "one target → two solutions" and "workspace boundary → si
 ### References (for later, not required today)
 - Course episodes 057–059 (B 站《黑马程序员 · 具身智能》).
 - (Later) Day 15 geometric/numerical IK, Day 16 keyboard control build on this.
----
