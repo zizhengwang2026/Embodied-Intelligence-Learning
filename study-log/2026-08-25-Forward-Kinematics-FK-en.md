@@ -1,8 +1,7 @@
----
 # Lecture 12 — Robot Kinematics: From Joint Angles to End Position (Forward Kinematics)
 
 > **Meta**
-> - Date: 2026-08-25 (Thursday)
+> - Date: 2026-08-25 (Tuesday)
 > - Lecture / Day: Lecture 12 — Day 12 of the study plan
 > - Plan anchor: `study-plan-60d.md` → **P5 Kinematics (FK / IK)**, course episodes **051–053**
 > - Goal of today: what kinematics is, how to derive a one-link model, and how multi-link chains compose into the end position. This is the ground for "letting the arm know where its hand is". Ties to KB 02 (humanoid stack) kinematics.
@@ -104,4 +103,3 @@ This diagram shows "chained transform → end coords", rendered directly on GitH
 - Course episodes 051–053 (B 站《黑马程序员 · 具身智能》).
 - KB 02 humanoid stack (kinematics).
 - (Later) Day 14 IK, Day 16 keyboard control build on today's FK.
----
