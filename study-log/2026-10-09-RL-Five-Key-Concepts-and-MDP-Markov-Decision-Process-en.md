@@ -31,7 +31,7 @@ MDP means: **the next state depends only on "current state + current action", no
 
 ## 2.5 补充细节：RL's five key concepts & MDP
 
-- Five key concepts: state s (the world the agent sees), action a (the choices it can make), reward r (the score from the environment), policy π(a|s) (which action to pick in which state), value V(s) or Q(s,a) (how valuable a state/action is).
+- Building on the five key concepts in §2.1 (Agent / Environment / State / Action / Reward), RL also commonly uses two **derived quantities** to describe decisions: policy π(a|s) (which action to pick in which state) and value V(s) or Q(s,a) (how valuable a state/action is) — these are built on state/action/reward, not a redefinition of the five key concepts.
 - MDP formalism: the 5-tuple (S, A, P, R, γ); P is the state-transition probability, R is the reward, γ∈[0,1] is the discount factor.
 - Objective: maximize the expected "cumulative discounted reward" E[Σ γᵗ rᵗ] — the further in the future, the lower the weight.
 - Two mainstream families: value-function methods (learn Q/V then derive a policy) and policy-gradient methods (optimize π directly); BC is imitation, RL is trial-and-error optimization.
