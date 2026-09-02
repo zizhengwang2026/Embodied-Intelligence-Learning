@@ -44,13 +44,13 @@ Everything here is written from real, hands-on experience (a two-day on-site rob
 
 ## 📓 Study Log & Plan
 
-A structured **60-day learning track** built on the 黑马程序员《具身智能》223-ep course, plus day-by-day lecture notes (knowledge points, principles, hands-on steps, pitfalls, and first-person reflections). **All 120 notes (Day 1–60) are bilingual (中文 / English).** On top of that, I added **3 self-study extension chapters (Day 61–63)** on deployment, integration, and connecting the material to my own soft-robotics research.
+A structured **60-day learning track** built on the 黑马程序员《具身智能》223-ep course, plus day-by-day lecture notes (knowledge points, principles, hands-on steps, pitfalls, and first-person reflections). **All 126 notes (Day 1–63) are bilingual (中文 / English).** That's 120 notes for the 60-day course (Day 1–60), plus 6 more across 3 self-study extension chapters (Day 61–63) on deployment, integration, and connecting the material to my own soft-robotics research.
 
 - **[`study-plan-60d.md`](study-plan-60d.md)** — the full 60-day, 11-phase plan (all 223 episodes mapped to days).
 - **[`study-log/README.md`](study-log/README.md)** — the complete index of all 126 notes (Day 1–63), grouped by phase.
 - **Lecture notes (`study-log/`):** every day has a 中文 and an English version, e.g.
-  - [Lecture 01 — What is Embodied Intelligence? (EN)](study-log/2026-08-15-lecture-01-en.md) · [中文](study-log/2026-08-15-lecture-01-zh.md)
-  - [Lecture 02 — Actuators, Gears, Sensors & 3D Printing (EN)](study-log/2026-08-15-lecture-02-en.md) · [中文](study-log/2026-08-15-lecture-02-zh.md)
+  - [Day 1 — Embodied-Intelligence Definition & Research Landscape (EN)](study-log/2026-08-15-Embodied-Intelligence-Definition-and-Research-Landscape-en.md) · [中文](study-log/2026-08-15-具身智能定义与研究版图-zh.md)
+  - [Day 2 — Robot Hardware: Actuators, Gears, Sensors & 3D (EN)](study-log/2026-08-15-Robot-Hardware-Actuators-Reduction-Encoders-en.md) · [中文](study-log/2026-08-15-机器人硬件实体-执行器减速编码器-zh.md)
   - [Day 57 — RL Five Key Concepts & MDP (EN)](study-log/2026-10-09-RL-Five-Key-Concepts-and-MDP-Markov-Decision-Process-en.md) · [中文](study-log/2026-10-09-强化学习五大概念与MDP马尔可夫决策过程-zh.md)
   - [Day 63 — Soft Actuators × Embodied AI (EN)](study-log/2026-10-15-Soft-Actuators-and-Embodied-AI-Research-Direction-DEA-en.md) · [中文](study-log/2026-10-15-软体执行器与具身智能研究方向衔接DEA-zh.md)
 
