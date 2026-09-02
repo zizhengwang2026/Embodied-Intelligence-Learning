@@ -54,7 +54,7 @@ flowchart TD
     FUS --> PLAN[Manipulation planning<br>grasp / RL]
     PLAN --> CTRL[Compliant control<br>WBC / MPC]
     CTRL --> HAND[Hand / DEA soft hand]
-    HAND -->|contact feedback| TAC
+     HAND -->|contact feedback| TAC
 ```
 
 ### 1.6 DEA cross-over focus
