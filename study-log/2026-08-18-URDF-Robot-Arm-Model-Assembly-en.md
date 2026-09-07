@@ -123,7 +123,7 @@ flowchart TD
 3. **Hand-copy the URDF in §3 diagram 2** (write it out, don't copy-paste), silently saying what each line does. When done, count: how many links? how many joints? what type each?
 4. **Watch 023–026** (1.0–1.5× speed). Focus on 026: the "detail issues" the instructor stresses (inertia, limits, frame alignment).
 5. **(Hands-on, optional)** Save diagram 2's URDF as a `.urdf` file, load it into the course's sim environment, and check it correctly shows a "base + two arm segments."
-6. **Mirror test (3 min, close everything and talk):** *"A robot arm = ___ + ___; the first joint is ___, rotating around ___; each added joint adds one ___; why must the base be fixed ___; the end effector is ___."*
+6. **Mirror test (3 min, close everything and talk):** *"A robot arm = ___ + ___; the first joint is ___, rotating around ___; each added joint adds one ___; why must the base be fixed ___; the end effector is ___"*
 
 > ✅ **Definition of "done today":** chain diagram drawn by hand + hand-copied URDF with correct link/joint counts + can explain "DOF" and "fix the base."
 
@@ -143,7 +143,14 @@ flowchart TD
 
 ---
 
-## 6. Next steps / checkpoint
+## 6. DEA cross-link (light, not the main line)
+
+- A rigid arm's "DOF = number of joints": each joint you add gives one controllable rotation. A soft arm isn't assembled joint-by-joint — it's a **continuum**, with theoretically infinite DOFs that can't be controlled one by one.
+- For a DEA gripper this is a selling point: instead of precisely planning every joint, you let the **compliant body conform to the object** (morphological computation again) — control degrades from "exact per-joint" to "rough direction". Rigid and soft are complementary toolkits.
+
+---
+
+## 7. Next steps / checkpoint
 
 - **Checkpoint passed if:** chain diagram drawn by hand + hand-copied URDF counted correctly + can explain DOF / base-fixing.
 - **Next lecture (Day 6):** **Upper/lower computer comms + scanning & configuring servos by ID** (027–030) — back from the "virtual arm" to the "real arm," getting the computer to talk to real servos.
@@ -153,4 +160,4 @@ flowchart TD
 
 ### References (for later, not required today)
 - Course episodes 023–026 (黑马程序员《具身智能》223-ep version).
-- ROS wiki URDF tutorial's "building a movable model" section (the official multi-joint example).</content>
+- ROS wiki URDF tutorial's "building a movable model" section (the official multi-joint example).
