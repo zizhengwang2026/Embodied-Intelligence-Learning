@@ -107,16 +107,16 @@ where `scale = 90° / (raw_{+90°} − raw_mid)`.
 ```mermaid
 flowchart TD
     subgraph Before["Before calibration (offset present)"]
-      S0[software says 0°] -->|"raw shifted by offset"| P0[physical shaft is +3°]
+      S0[software says 0°] -->|\"raw shifted by offset\"| P0[physical shaft is +3°]
     end
 
     subgraph Calib["Calibration (record known points)"]
-      C1["drive to endpoint A<br/>record raw_A @ angle_A"] --> MAP["fit line<br/>angle = a·raw + b"]
-      C2["drive to endpoint B<br/>record raw_B @ angle_B"] --> MAP
+      C1[\"drive to endpoint A<br/>record raw_A @ angle_A\"] --> MAP[\"fit line<br/>angle = a·raw + b\"]
+      C2[\"drive to endpoint B<br/>record raw_B @ angle_B\"] --> MAP
     end
 
     subgraph After["After calibration (aligned)"]
-      S1[software says 0°] ==>|"(raw − raw_mid) × scale"| P1[physical shaft is 0°]
+      S1[software says 0°] ==>|\"(raw − raw_mid) × scale\"| P1[physical shaft is 0°]
     end
 
     Before --> Calib --> After
@@ -133,7 +133,7 @@ flowchart TD
 3. **Recite the mapping out loud**: `angle = (raw − raw_mid) × scale`, and how to solve `a` and `b` from two points.
 4. **Watch 036–039** (1.0–1.5× speed). Focus on 037 (why the teacher arm is first) and 039 (the two-point linear map).
 5. **Read a real calibration file** if you have the SO-101 / LeRobot environment — open the `calib` JSON and find each servo's midpoint and scale; sanity-check the ranges.
-6. **Mirror test (3 min, close everything and talk):** *"why a servo's 'zero' is wrong out of the box ___; what two numbers fully define the calibration line ___; why the teacher arm is calibrated first ___; what happens if you forget to save the calib file ___; how to verify a calibration is correct ___."*
+6. **Mirror test (3 min, close everything and talk):** *"why a servo's 'zero' is wrong out of the box ___; what two numbers fully define the calibration line ___; why the teacher arm is calibrated first ___; what happens if you forget to save the calib file ___; how to verify a calibration is correct ___".*
 
 > ✅ **Definition of "done today":** can derive `angle = a·raw + b` from two known points + can explain why the teacher arm is calibrated before the follower + can point at the midpoint and scale in a calibration file.
 
@@ -153,7 +153,14 @@ flowchart TD
 
 ---
 
-## 6. Next steps / checkpoint
+## 6. DEA cross-link (light, not the main line)
+
+- Calibration in essence: **raw sensor reading ≠ physical quantity — build a mapping**. Servos are the easy case: the zero offset is near-linear, fit two known points and you're done.
+- DEA is hard because that mapping is **nonlinear + hysteretic + creeping**: the same voltage gives different strain on the way up vs down, and it drifts over time. So soft actuators rarely rely on lookup calibration — they let **learning-based control** learn the mapping online inside the loop. Same idea, upgraded tool: from curve-fitting to training.
+
+---
+
+## 7. Next steps / checkpoint
 
 - **Checkpoint passed if:** you can fit `angle = a·raw + b` from two points + explain why the teacher arm comes first + locate midpoint/scale in a real calib file.
 - **Next lecture (Day 9):** **Teleoperation concepts + programming-language trends + teacher-arm calibration finished** (040–042) — what "master/slave" and "demonstration" mean, and actually *completing* and *verifying* the teacher arm's calibration so its angles are finally trustworthy.
@@ -161,7 +168,7 @@ flowchart TD
 
 ---
 
-## 7. First-person reflection (from the SO-101 bootcamp, not the textbook)
+## 8. First-person reflection (from the SO-101 bootcamp, not the textbook)
 
 The course explains calibration in the abstract; the bootcamp made it physical. On the SO-101 dual arm I ran LeRobot's calibration flow by hand. Three things stuck:
 
