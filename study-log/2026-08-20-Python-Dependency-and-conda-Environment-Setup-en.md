@@ -122,7 +122,7 @@ flowchart TD
 3. **Memorize the 7 conda commands** (the table in §1.3), write them down from memory once.
 4. **Watch 031–035** (1.0–1.5× speed). Focus on 033/034: install miniconda + run through the 7 commands.
 5. **Actually do it**: install miniconda → swap to a domestic mirror → create `embodied` environment → install numpy + matplotlib → verify with `import`.
-6. **Mirror test (3 min, close everything and talk):** *"Why use conda instead of Python's built-in ___; miniconda vs anaconda differ in ___; the 7 common commands are ___; why the base env can't be polluted ___; conda/pip mixing order is ___; what if you don't swap the domestic mirror ___."*
+6. **Mirror test (3 min, close everything and talk):** *"Why use conda instead of Python's built-in ___; miniconda vs anaconda differ in ___; the 7 common commands are ___; why the base env can't be polluted ___; conda/pip mixing order is ___; what if you don't swap the domestic mirror ___."
 
 > ✅ **Definition of "done today":** can write the 7 conda commands from memory + `embodied` environment built and `import numpy` works + know why you need a domestic mirror.
 
@@ -142,7 +142,14 @@ flowchart TD
 
 ---
 
-## 6. Next steps / checkpoint
+## 6. DEA cross-link (light, not the main line)
+
+- Environment setup becomes the "first wall" in real DEA research: soft/embodied open-source code routinely depends on MuJoCo, FEM libraries, specific numpy versions — **one version clash and everything breaks**. Conda isolation = one "clean little machine" per experiment.
+- Build the habit: **one project, one environment, explicit requirements** — it lets others reproduce your DEA experiments, and lets you still run your own code three months later. What you learned today is research infrastructure.
+
+---
+
+## 7. Next steps / checkpoint
 
 - **Checkpoint passed if:** you can write the 7 conda commands from memory + the `embodied` environment is built and `import numpy` works + you know why the domestic mirror matters.
 - **Next lecture (Day 8):** **Calibration principle + servo calibration algorithm** (036–039) — back to the real machine, how to align the software's "zero degrees" with the real servo's "zero degrees".
@@ -154,4 +161,4 @@ flowchart TD
 - Course episodes 031–035 (黑马程序员《具身智能》223-ep version).
 - miniconda official site installers (Windows / macOS / Linux).
 - Domestic conda mirror configuration (Tsinghua TUNA / Aliyun) — search "conda Tsinghua mirror" for one-line configuration.
-- (Later) Day 8–11 real-machine experiments + WebSocket + real angle reading will run on top of the `embodied` environment you built today.</content>
+- (Later) Day 8–11 real-machine experiments + WebSocket + real angle reading will run on top of the `embodied` environment you built today.
