@@ -156,7 +156,14 @@ flowchart LR
 
 ---
 
-## 6. Next steps / checkpoint
+## 6. DEA cross-link (light, not the main line)
+
+- Today's table already contrasts rigid servos with soft actuators; zoom in on the DEA row: force comes from **electric field → material strain** (voltage sets strain), precision is hard to read directly (no encoder — external vision / capacitive sensing), speed is set by material response.
+- The plan's angle: an encoder servo is a self-correcting mini-loop in hardware; a DEA artificial muscle is not — it pushes that loop into **learning-based control** (later days). Knowing both answers to the "body" is the research edge your mechanical background gives you.
+
+---
+
+## 7. Next steps / checkpoint
 
 - **Checkpoint passed if:** you can redraw the actuator-chain diagram + pass the 3-minute mirror test + the three-essentials table is filled.
 - **Next lecture (Day 3):** **Simulation & URDF** — build a virtual robot in software first (013–017), validate structure without touching real hardware.
