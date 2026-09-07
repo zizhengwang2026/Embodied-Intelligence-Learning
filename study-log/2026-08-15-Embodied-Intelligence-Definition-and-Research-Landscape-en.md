@@ -193,7 +193,14 @@ flowchart TD
 
 ---
 
-## 6. Next steps / checkpoint
+## 6. DEA cross-link (light, not the main line)
+
+- Day 1's research map already files soft robotics under station 5 — Physical intelligence. Your own direction (DEA artificial muscle) is one concrete "soft body" answer inside that station: the actuator is the body, and the body is half the intelligence.
+- The thread to remember: soft robots / artificial muscles only become "embodied AI" when paired with the sensing–learning loop of stations 1–4 (later days). DEA’s hard parts — hysteresis, creep, no built-in encoder — are exactly why it needs that loop.
+
+---
+
+## 7. Next steps / checkpoint
 
 - **Checkpoint passed if:** you can draw the closed loop + 5-station map by hand and pass the 3-min mirror test.
 - **Next lecture (Day 2):** **Hardware** — actuators, reduction gears, angle sensors, 3D printing (episodes 008–012). The parts that make a robot actually *move*.
