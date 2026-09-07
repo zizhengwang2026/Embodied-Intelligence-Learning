@@ -136,7 +136,14 @@ sequenceDiagram
 
 ---
 
-## 6. Next steps / checkpoint
+## 6. DEA cross-link (light, not the main line)
+
+- The "angle → live web refresh" pipeline you built today is essentially **a realtime dashboard for an actuator**. DEA experiments need the same: plot voltage, capacitive-sensor readings, estimated strain in real time, or you'll never see the hysteresis and drift.
+- The vibe-coding playbook (say what you want, verify in small pieces) fits soft actuation especially well because it's **highly custom with few off-the-shelf libraries** — building monitoring UIs for high-voltage drivers and soft-sensor acquisition is exactly where it shines.
+
+---
+
+## 7. Next steps / checkpoint
 
 - **Checkpoint passed if:** you can explain Vibe Coding + WebSocket full-duplex + the three segments of a real-time chain, and you built a minimal real-time monitoring page with the AI.
 - **Next lecture (Day 11):** formally enter **data collection** — collect demonstrations on the calibrated teacher arm to prepare "(observation, action)" data for behavior cloning (BC).
@@ -144,7 +151,7 @@ sequenceDiagram
 
 ---
 
-## 7. First-person reflection (from the SO-101 bootcamp, not the textbook)
+## 8. First-person reflection (from the SO-101 bootcamp, not the textbook)
 
 The deepest impression from "watching angles live" in the bootcamp: **seeing it live and seeing it only from logs afterwards are two totally different debugging experiences.**
 
