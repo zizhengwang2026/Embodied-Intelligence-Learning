@@ -140,7 +140,14 @@ flowchart TD
 
 ---
 
-## 6. Next steps / checkpoint
+## 6. DEA cross-link (light, not the main line)
+
+- Today you "wrote" a robot as XML: every link is a rigid part, every joint has a fixed rotation/translation axis. Standard URDF only describes **rigid bodies** — a DEA artificial muscle, which deforms across its whole area when voltage is applied, has neither a fixed joint axis nor a rigid link, so forcing it into URDF distorts reality.
+- To trial DEA in simulation you need **soft-body thinking** (many tiny rigid segments chained / FEM), or the **morphological computation** view where deformation itself does part of the control's work (Day 3 planted this seed). Day 17's soft modeling will fill in these tools.
+
+---
+
+## 7. Next steps / checkpoint
 
 - **Checkpoint passed if:** three-identities diagram drawn by hand + can read §3's URDF line by line + Node.js installed.
 - **Next lecture (Day 5):** **Building the robot arm** (023–026) — from the base upward, assemble upper arm, forearm, gripper, and see a full arm in simulation.
