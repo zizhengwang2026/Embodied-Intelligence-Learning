@@ -74,16 +74,16 @@ flowchart LR
     end
 
     subgraph C["Calibration (done + verified)"]
-      A1 -->|"raw → angle<br/>(midpoint + scale)"| A2[trustworthy angles]
+      A1 -->|\"raw → angle<br/>(midpoint + scale)\"| A2[trustworthy angles]
     end
 
     subgraph D["Data collection"]
-      A2 -->|"action"| DS[dataset of (obs, action)]
-      CAM[camera images] -->|"observation"| DS
+      A2 -->|\"action\"| DS[dataset of (obs, action)]
+      CAM[camera images] -->|\"observation\"| DS
     end
 
     subgraph F["Follower arm (slave)"]
-      DS -->|"reproduce / train target"| F1[follower arm]
+      DS -->|\"reproduce / train target\"| F1[follower arm]
     end
 ```
 
@@ -98,7 +98,7 @@ flowchart LR
 3. **Recite the four words out loud**: master/slave (主从), demonstration (示教), observation, action — and say which one the teacher arm produces.
 4. **Watch 040–042** (1.0–1.5× speed). Focus on 040 (teleoperation vocabulary) and 042 (finish + verify the calibration).
 5. **If you have the environment:** complete the teacher-arm calibration and *verify* — sweep every joint, confirm continuity, save the `calib` file.
-6. **Mirror test (3 min, close everything and talk):** *"what is teleoperation and why does IL need it ___; what are the four words and which is the teacher arm's output ___; how has programming changed in the AI era and what is your new role ___; what counts as 'calibration finished' ___."*
+6. **Mirror test (3 min, close everything and talk):** *"what is teleoperation and why does IL need it ___; what are the four words and which is the teacher arm's output ___; how has programming changed in the AI era and what is your new role ___; what counts as 'calibration finished' ___."
 
 > ✅ **Definition of "done today":** can explain master/slave + demonstration + (obs, action) in your own words + can state the AI-era role shift + the teacher-arm calibration is completed *and verified*.
 
@@ -117,7 +117,14 @@ flowchart LR
 
 ---
 
-## 6. Next steps / checkpoint
+## 6. DEA cross-link (light, not the main line)
+
+- Teleop data collection fuels imitation learning: a human moves the teacher arm → record (observation, action). Rigid arms have encoders, so actions are naturally readable; **soft arms have no "joint angles" to copy** — demonstration data must be inferred from vision/tactile, which is exactly the data bottleneck of "soft × embodied", and also the opportunity.
+- If your DEA project also solves "how to reliably capture soft-robot state", you stand on the scarcest link in embodied AI (tactile + imitation learning). The data-collection architecture you learned today becomes the soft version once you swap the sensor.
+
+---
+
+## 7. Next steps / checkpoint
 
 - **Checkpoint passed if:** you can explain master/slave + demonstration + (obs, action) + the AI-era role shift, and the teacher-arm calibration is done *and verified*.
 - **Next lecture (Day 10):** **AI-generate a servo-angle monitoring program + WebSocket real-time communication** (043–046) — Vibe Coding (describe in natural language, verify in small pieces) and WebSocket (full-duplex) to push angles from hardware → backend → browser in real time.
@@ -125,7 +132,7 @@ flowchart LR
 
 ---
 
-## 7. First-person reflection (from the SO-101 bootcamp, not the textbook)
+## 8. First-person reflection (from the SO-101 bootcamp, not the textbook)
 
 The course names the concepts; the bootcamp made me *do* them. Two things stuck hardest:
 
