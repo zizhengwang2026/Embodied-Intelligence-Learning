@@ -172,7 +172,7 @@ flowchart LR
 2. **Redraw the "bone tree" diagram from §3 by hand** (base → upper arm → forearm → gripper → finger, label each joint type). Don't copy-paste; drawing forces the structure into your head.
 3. **Fill a small "link vs joint" comparison table**: link is the part (noun), joint is the connection (verb). Give 2 examples from your own body each (e.g., thigh = link, knee = joint).
 4. **Watch 013–017** (1.0–1.5× speed). Focus on 017: notice the four things (visual / collision / inertial / origin) of one link.
-5. **Mirror test (3 min, close everything and talk):** *"Simulation is ___; URDF is ___; link is like ___; joint is like ___; revolute is like ___, prismatic is like ___; the biggest pitfall of simulation is ___."*
+5. **Mirror test (3 min, close everything and talk):** *"Simulation is ___; URDF is ___; link is like ___; joint is like ___; revolute is like ___, prismatic is like ___; the biggest pitfall of simulation is ___"*
 6. **(Advanced, not urgent)** Find a ready-made URDF example online (e.g., a small car), open it in an online URDF viewer, and point out which is the link and which is the joint.
 
 > ✅ **Definition of "done today":** bone tree drawn by hand + mirror test passed + can identify link and joint in a URDF example.
@@ -193,7 +193,14 @@ flowchart LR
 
 ---
 
-## 6. Next steps / checkpoint
+## 6. DEA cross-link (light, not the main line)
+
+- Standard URDF models **rigid** link–joint trees; today's misconception #7 already says a soft actuator needs FEM / soft-body simulation. For DEA that is the key workflow: you design the structure in CAD/URDF-style rigid thinking, but must switch to soft-body simulation to predict deformation under voltage.
+- This is also where Sim-to-Real (station 4) gets harder for soft robots — the sim gap is bigger, which is why learning control that tolerates model error matters for DEA.
+
+---
+
+## 7. Next steps / checkpoint
 
 - **Checkpoint passed if:** you can draw the bone tree by hand + pass the 3-min mirror test + identify link and joint in a URDF example.
 - **Next lecture (Day 4):** **URDF tag deep-dive + Node.js simulation environment** (018–022) — actually write each URDF tag by hand, and get the simulation environment running on your computer to see the robot.
@@ -204,4 +211,4 @@ flowchart LR
 ### References (for later, not required today)
 - Course episodes 013–017 (黑马程序员《具身智能》223-ep version).
 - (Later) Day 4–5 will hand-write URDF tags and run the Node.js simulator; Day 17–20's PID will fill the "controller" box in this simulation loop.
-- Extended thought: the difference between soft-robot simulation (finite element / soft-body physics) and standard URDF — a research entry point.</content>
+- Extended thought: the difference between soft-robot simulation (finite element / soft-body physics) and standard URDF — a research entry point.
