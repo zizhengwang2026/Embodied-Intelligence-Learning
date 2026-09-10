@@ -4,7 +4,7 @@
 > **日期**：2026-10-12 ｜ **Day 60 / 60**
 > 本篇为《黑马程序员·具身智能》223 节配套复习笔记，零基础可读、不失专业；含流程图与易错点。
 
-## 一、今日课程（集号映射）
+## 1. Today's Lessons (Episode Mapping)
 
 - **219 DQN intro**: use a neural network instead of the Q-table.
 - **220 Visualize Q-table training**: plot the Q-table training process.
@@ -12,7 +12,7 @@
 - **222 HuggingFace text-to-image**: try HF's text-to-image.
 - **223 Genetic neural network intro**: evolutionary algo raises a batch, keeps good, drops bad.
 
-## 二、核心知识点（零基础讲透）
+## 2. Core Concepts (Zero-Base)
 
 ### 2.1 DQN = neural net replaces Q-table
 The Q-table only fits "few, discrete states". With many/continuous states (e.g. pixel images), **DQN uses a neural net Qθ(s,a) to estimate value directly**, parameters θ replace the whole table.
@@ -59,24 +59,24 @@ flowchart LR
 
 ![DQN deep network architecture](assets/dqn_arch.svg)
 
-## 三、动手操作（跑通才算学会）
+## 3. Hands-On (Run It to Learn It)
 
 1. Run Stable-Baselines3's DQN on CartPole, see if reward rises.
 2. Open HuggingFace, find an embodied/vision model, try download and text-to-image.
 3. Draw a BC vs RL comparison table, speak 3 minutes into a mirror on the "60-day panorama" (camera → understand → execute → collect → learn).
 
-## 四、易错点（前人踩过的坑）
+## 4. Pitfalls (Lessons from Others)
 
 - **DQN only updates seen states → needs enough exploration**: don't turn off ε-greedy too early, or it outputs garbage on new frames.
 - **Genetic algo population too small → premature convergence**: give enough population and generations; a bad fitness function yields "cheating" solutions.
 - **Treating HF as "only text-to-image"**: HF is also a treasure trove of RL/embodied models; downloading pretrained weights saves huge compute.
 - **Graduation = the end**: 60 days is the start of the loop; running the chain once is the real "graduation".
 
-## 五、DEA / 软体机器人交叉链接（轻量）
+## 5. DEA / Soft-Robot Cross-Link (Light)
 
 DEA soft actuators can use DQN (state = continuous deformation/voltage, exactly why a net replaces the table) or genetic search for a "safe voltage envelope"; HF also hosts soft/tactile models to borrow. Light cross-link; main line is generic DQN/genetic NN and graduation.
 
-## 六、今日小结 & 镜子复述 3 分钟
+## 6. Daily Summary & 3-Min Mirror Recap
 
 60-day capstone! Today: DQN (neural net replaces Q-table, experience replay + target net), HuggingFace (model community), genetic neural network (evolutionary trial-and-error). Finally draw a BC vs RL total comparison and explain the chain "camera → LLM → arm → data → BC/RL" in the mirror — running it independently is the real graduation.
 
