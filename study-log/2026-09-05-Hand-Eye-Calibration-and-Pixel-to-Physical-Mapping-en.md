@@ -1,7 +1,7 @@
 # Lecture 23 · Hand-Eye Calibration & Pixel↔Physical Mapping
 
 > **Lecture info**
-> - Date: 2026-09-05 (Fri)
+> - Date: 2026-09-05 (Sat)
 > - Lecture #: 23 (Study Plan Day 23, P7 Computer Vision / OpenCV)
 > - Plan ref: `study-plan-60d.md` → **P7 Computer Vision / OpenCV**, episodes **092–095**
 > - Goal: Understand why *hand-eye calibration* is the foundation of visual grasping — map pixel coordinates seen by the camera to real-world physical coordinates on the table; and collect the joint-angle information needed for arm grasping. This is the first time the “eye” (camera) and the “hand” (arm) are truly aligned.
