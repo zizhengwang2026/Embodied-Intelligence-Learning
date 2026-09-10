@@ -1,7 +1,7 @@
 # Lecture 11 — Reading Real Arm Angles & Action Recording / Playback
 
 > **Meta**
-> - Date: 2026-08-24 (Wednesday)
+> - Date: 2026-08-24 (Mon)
 > - Lecture / Day: Lecture 11 — Day 11 of the study plan
 > - Plan anchor: `study-plan-60d.md` → **P4 Upper-lower computer comm / calibration / WebSocket**, course episodes **047–050**
 > - Goal of today: swap Day 10's "sim monitor" for "read real servo angles"; see Apple's arm as an industry benchmark; understand "action-sequence recording & playback" = saving teleoperation as a reproducible trajectory. Ties to KB 02 (humanoid stack) actuator feedback.
