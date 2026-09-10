@@ -1,7 +1,7 @@
 # Lecture 15 — IK Solving Methods: Geometric vs Numerical
 
 > **Meta**
-> - Date: 2026-08-28 (Thursday)
+> - Date: 2026-08-28 (Fri)
 > - Lecture / Day: Lecture 15 — Day 15 of the study plan
 > - Plan anchor: `study-plan-60d.md` → **P5 Kinematics (IK)**, course episodes **060–062**
 > - Goal of today: two IK solvers — geometric (analytic) and numerical (iterative); know each's pros/cons and when to use which. Builds on Day 14 IK multiplicity.
