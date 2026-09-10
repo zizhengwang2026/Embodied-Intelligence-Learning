@@ -1,7 +1,7 @@
 # Lecture 27 · Bird's-Eye Affine / Object Pose / QR Recognition
 
 > **Lecture info**
-> - Date: 2026-09-09 (Tue)
+> - Date: 2026-09-09 (Wed)
 > - Lecture #: 27 (Study Plan Day 27, P7 Computer Vision / OpenCV)
 > - Plan ref: `study-plan-60d.md` → **P7 Computer Vision / OpenCV**, episodes **109–111**
 > - Goal: Three practical vision tricks — **bird’s-eye affine** straightens a tilted shot into a top-down view; **object pose angle** gives rotation + center (gripper must align to angle to grasp firmly); **QR recognition** reads info via a ready API (gives the object an “ID card”).
