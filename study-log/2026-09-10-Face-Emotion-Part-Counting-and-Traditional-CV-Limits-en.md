@@ -1,7 +1,7 @@
 # Lecture 28 · Face / Emotion / Part Counting & Traditional CV Limits
 
 > **Lecture info**
-> - Date: 2026-09-10 (Wed)
+> - Date: 2026-09-10 (Thu)
 > - Lecture #: 28 (Study Plan Day 28, P7 Computer Vision / OpenCV · **wrap-up**)
 > - Plan ref: `study-plan-60d.md` → **P7 Computer Vision / OpenCV**, episodes **112–115**
 > - Goal: Use **pretrained models** for face / emotion detection, **contour counting** for part counting — the “sweet spot” of traditional CV; but **hand-written rules / thresholds break in complex scenes**, which is exactly why “machine learning” from Day 29 steps in. P7 wraps up: links past (vision tricks) to future (ML).
