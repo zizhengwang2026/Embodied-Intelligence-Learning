@@ -1,7 +1,7 @@
 # Lecture 26 · Eye-in-Hand / Follow Control / Vision-Kinematics Integration
 
 > **Lecture info**
-> - Date: 2026-09-08 (Mon)
+> - Date: 2026-09-08 (Tue)
 > - Lecture #: 26 (Study Plan Day 26, P7 Computer Vision / OpenCV)
 > - Plan ref: `study-plan-60d.md` → **P7 Computer Vision / OpenCV**, episodes **104–108**
 > - Goal: Mount the camera on the arm tip (eye-in-hand), achieve **follow control** (“target moves, arm follows in real time”), and **integrate** vision + kinematics + control into one running loop. This chains everything from P7 into a “hand+eye that chases the object”.
