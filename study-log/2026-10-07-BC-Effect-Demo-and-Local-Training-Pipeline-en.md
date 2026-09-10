@@ -4,13 +4,13 @@
 > **日期**：2026-10-07 ｜ **Day 55 / 60**
 > 本篇为《黑马程序员·具身智能》223 节配套复习笔记，零基础可读、不失专业；含流程图与易错点。
 
-## 一、今日课程（集号映射）
+## 1. Today's Lessons (Episode Mapping)
 
 - **201 BC effect demo**: see the trained BC make the follower autonomously reproduce the demo.
 - **202 Data-collection notes**: data diversity / consistency points.
 - **203 Local training flow**: get BC running on your own laptop first.
 
-## 二、核心知识点（零基础讲透）
+## 2. Core Concepts (Zero-Base)
 
 ### 2.1 BC train → deploy loop
 Train policy π(o→a) on Day54's data; after training, **without a human wearing the leader**, the follower sees images and outputs actions on its own, reproducing the task.
@@ -32,23 +32,23 @@ flowchart LR
 ### 2.3 Local training flow
 1. Load data (image+action); 2. Build a small net (e.g. CNN+RNN/MLP); 3. Supervised train (predict action vs expert action, MSE); 4. Save weights; 5. Deploy inference.
 
-## 三、动手操作（跑通才算学会）
+## 3. Hands-On (Run It to Learn It)
 
 1. Run the BC training flow on your laptop (small sample first).
 2. Load trained weights, let the follower autonomously reproduce yesterday's task, see the effect.
 3. Check your dataset against "diversity/consistency" for gaps to fill.
 
-## 四、易错点（前人踩过的坑）
+## 4. Pitfalls (Lessons from Others)
 
 - **Only one pose recorded → narrow distribution, crashes on new cases**: add diversity.
 - **Training interrupted without background run → wasted**: even locally prefer nohup/background or frequent checkpoints.
 - **Treating "runs" as "trained well"**: local small-sample success only validates the pipeline; real performance needs data volume and tuning.
 
-## 五、DEA / 软体机器人交叉链接（轻量）
+## 5. DEA / Soft-Robot Cross-Link (Light)
 
 For DEA soft-gripper BC, action is a voltage sequence, loss is still MSE between predicted and expert voltage; consistency = same task, same voltage. Light cross-link.
 
-## 六、今日小结 & 镜子复述 3 分钟
+## 6. Daily Summary & 3-Min Mirror Recap
 
 Today we turn BC from "data" into "a moving policy": train π locally so the follower autonomously reproduces the demo. Key: **data diversity/consistency decide success; run the pipeline locally first, then scale**.
 
