@@ -1,7 +1,7 @@
 # Lecture 25 · Shape Detection / Difference / Color Tracking
 
 > **Lecture info**
-> - Date: 2026-09-07 (Sun)
+> - Date: 2026-09-07 (Mon)
 > - Lecture #: 25 (Study Plan Day 25, P7 Computer Vision / OpenCV)
 > - Plan ref: `study-plan-60d.md` → **P7 Computer Vision / OpenCV**, episodes **100–103**
 > - Goal: Three ways to “find objects in the frame” — **shape detection** (contour geometry), **difference method** (subtract frames to find “what just appeared”), **color-block tracking** (HSV mask that follows a moving target and gets optimized). Day 22’s color sorting was static; today it levels up to “keep tracking even while moving”.
