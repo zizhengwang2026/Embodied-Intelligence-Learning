@@ -366,7 +366,7 @@ Day 52 你装 genkiarm、配 device config；本文 5.3 的"闭环共优化"= �
 - [x] 延伸阅读 15 条，均出自原文 References，作者+年份+期刊+主题，未编卷期页码 ✅
 - [x] 零军事内容 ✅
 - [x] 事实来自原文，模板遮蔽字段标注（以原文为准）✅
-- [x] 已推送 GitHub：`paper-analysis-acsnano/README.md`（commit `b61bdefbcec069cfaeec23d6bbe54a84d20a7fee`，blob sha `038ca907560080bbce741ebfc16d3a540d64b36f`）✅
+- [x] 已推送 GitHub：`paper-analysis-acsnano/README.md`（持续更新；正文不内嵌 commit/blob 哈希，以免自指陈旧）✅
 - [x] 事实复核（脚本对照原文抽取文本）：参考文献 538 篇 ✅、图 1–8 ✅、1950–2050 路线图 ✅、Figure 4a 六维权衡（force output / energy efficiency / bandwidth / durability / manufacturability / portability）✅、Sim-to-real 引文逐字一致 ✅、HASEL 零提及 ✅
 
 ---
