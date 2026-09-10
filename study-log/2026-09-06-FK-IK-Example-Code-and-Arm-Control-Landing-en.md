@@ -1,7 +1,7 @@
 # Lecture 24 · FK/IK Example Code & Arm Control Landing
 
 > **Lecture info**
-> - Date: 2026-09-06 (Sat)
+> - Date: 2026-09-06 (Sun)
 > - Lecture #: 24 (Study Plan Day 24, P7 Computer Vision / OpenCV)
 > - Plan ref: `study-plan-60d.md` → **P7 Computer Vision / OpenCV**, episodes **096–099**
 > - Goal: Connect Day 23’s “seen physical coord” to Day 12–16’s FK/IK; build a chained demo “visual localization → IK → joint angles → control arm to target”. FK recomputes current end pose from joint angles for closed-loop checking. This is the first time “eye + brain + hand” runs end to end.
