@@ -44,7 +44,7 @@ Soft robotics is evolving from a field centered on compliant mechanisms toward a
 
 ### 第 1 章 引言（INTRODUCTION）
 **(a) 主线论点**
-软体机器人最早只是"用柔性身体被动适应环境、安全抱东西"的巧思（受章鱼、象鼻、蠕虫、海星、人体肌肉骨骼启发）。但过去十年的材料/柔性电子/流体与电活性驱动/增材制造/机器学习进展，让它变成横跨机器人、材料、力学、纳米、电子、光子、制造、AI 的大交叉。现在它进入一个**关键转折**：实验室里很能打，但还有五大短板——力输出有限、能效低、材料疲劳、嵌入式感知弱、外接硬件笨重、可制造性差、长期自主性差。作者因此提出：软体机器人的难题不是"某个零件不行"，而是**材料-力学-感知-驱动-控制-环境耦合**的系统级难题。
+软体机器人最早只是"用柔性身体被动适应环境、安全抱东西"的巧思（受章鱼、象鼻、蠕虫、海星、人体肌肉骨骼启发）。但过去十年的材料/柔性电子/流体与电活性驱动/增材制造/机器学习进展，让它变成横跨机器人、材料、力学、纳米、电子、光子、制造、AI 的大交叉。现在它进入一个**关键转折**：实验室里很能打，但还有**七大短板**——力输出有限、能效低、材料疲劳、嵌入式感知弱、外接硬件笨重、可制造性差、长期自主性差。作者因此提出：软体机器人的难题不是"某个零件不行"，而是**材料-力学-感知-驱动-控制-环境耦合**的系统级难题。
 
 **(b) 关键概念（中英对照 + 大白话 + 比喻）**
 - **Embodied physical intelligence（具身物理智能）**：智能来自"身体本身"，不是外加的电脑。*大白话*：别总想着给机器人装个大脑，先把"肌肉和皮肤"变聪明。*比喻*：就像你骑车不用每毫秒算平衡，身体自己会晃。
@@ -52,7 +52,7 @@ Soft robotics is evolving from a field centered on compliant mechanisms toward a
 - **Roadmap 1950→2050（路线图）**：原文图 1 把演进分成三阶段——Soft Machines（强调柔顺）→ Integrated Soft Systems（柔性器件+嵌入式感知+混合架构）→ Embodied Physical Intelligence（物理 AI、可编程物质、自适系统）。*这是全文的"地图"，后面每章都是这张图上的一个格子。*
 
 **(c) 代表性数字/例子（出处）**
-- 引言明确点出软体机器人五大待解短板，包括 "limited force output, low energetic efficiency, material fatigue, weak embedded perception, bulky external hardware, poor manufacturability, and limited long-term autonomy"（第 1 章，原文 p.1）。
+- 引言明确点出软体机器人**七大**待解短板，包括 "limited force output, low energetic efficiency, material fatigue, weak embedded perception, bulky external hardware, poor manufacturability, and limited long-term autonomy"（第 1 章，原文 p.1）。
 - 路线图覆盖 **1950 到 2050**（图 1，原文 p.2）。
 
 **(d) 对 DEA / 人工肌肉研究者的可借鉴点**
@@ -77,7 +77,7 @@ Soft robotics is evolving from a field centered on compliant mechanisms toward a
 - **Hybrid soft–rigid（软硬混合）**：刚性骨架+软接口，兼顾力传递精度与环境适应。*例子*：外骨骼 OpenExo（ref 45）、灵巧手（ref 46）。
 
 **(c) 代表性数字/例子（出处）**
-- 列举了四类"力学即智能"范式：mechanomaterials、mechanical metamaterials、morphological computation、physical reservoir computing、mechanical logic（2.1，原文 p.3）。
+- 列举了五类"力学即智能"范式：mechanomaterials、mechanical metamaterials、morphological computation、physical reservoir computing、mechanical logic（2.1，原文 p.3）。
 - 已建立"把力传递能力联系到驱动密度、材料模量、几何拓扑、应力分布"的**通用标度律**（scaling relationships，ref 62–64，2.2，原文 p.4）。
 - 软体操作的本质局限：高柔顺体"难以隔离或选择性约束单个自由度"，因此横向力/力矩传递能力天生受限（2.2，原文 p.4）。
 
@@ -130,7 +130,7 @@ Day 53 你做了 teacher/student 标定、Day 54 录 "(观测, 动作)" 对—�
 **(c) 代表性数字/例子（出处）**
 - 软体感知被 "material hysteresis, viscoelasticity, sensor drift, contact uncertainty, embodiment-dependent dynamics" 约束（4.1，原文 p.8–9）。
 - 光学感知因 "high sensitivity, fast response, electromagnetic immunity, compliance compatibility" 被点名为最有前途的范式之一（4.2，原文 p.8）。
-- FBG 已能靠"监测由局变应变引起的波长漂移"做本体感知与形状重建（4.2，ref 219–224，原文 p.8–9）。
+- FBG（原文写作 **FBGs**）已能靠"监测由局部应变引起的波长漂移"做本体感知与形状重建（4.2，原文 ref 219,220，图 5a）。
 - AI 解释数据方面用到 self-supervised learning、multimodal fusion、physics-informed NN、foundation models、vision-language 架构（4.3，原文 p.9–10）。
 
 **(d) 对 DEA / 人工肌肉研究者的可借鉴点**
@@ -250,7 +250,11 @@ Day 52 你装 genkiarm、配 device config；本文 5.3 的"闭环共优化"= �
 - "the most important contribution of soft robotics may not simply be the development of safer or more flexible machines, but the introduction of new principles for designing adaptive physical systems whose intelligence is inseparable from their material embodiment"（9，原文 p.17）。
 - 纳米科技是"下一代可部署具身机器的基础使能者（foundational enablers）"。
 
-**(c) 对 DEA / 人工肌肉研究者的可借鉴点**
+**(c) 代表性数字/例子（出处）**
+- 第 9 章为收束性展望，**无新增量化数据**；定调引文见上方 (b)（原文 p.17）。
+- 全文收束判断：软体机器人的下一阶段标志是「从组件优化走向系统级集成」。
+
+**(d) 对 DEA / 人工肌肉研究者的可借鉴点**
 结论把你整篇的工作定位抬到了"新设计原理"的高度：DEA 不只是执行器技术，它是"智能与材料不可分"这一范式的**物理载体之一**。
 
 **(e) 与具身智能笔记的呼应**
@@ -314,7 +318,7 @@ Day 52 你装 genkiarm、配 device config；本文 5.3 的"闭环共优化"= �
 ## 七、批判性思考（基于原文，不硬编）
 
 1. **"具身物理智能"更像愿景而非方法**：全文反复强调"力学成为计算基底""智能长在材料里"，但承认当前物理计算受 "material variability, noise sensitivity, insufficient understanding of nonlinear compliant dynamics" 限制（2.1，原文 p.3），且"缺乏统一框架连接材料-几何-动力学-任务性能"。换句话说：**口号很美，工具还缺**。
-2. **对 HASEL 等热门驱动器着墨有限**：本文点名了 DEA、静电、IPMC、LCE、相变、自修复等，但**没有专门展开 HASEL（液压放大静电驱动器）**这类较新的混合驱动器——若你的方向涉及 HASEL，需另查专文。
+2. **对 HASEL 等热门驱动器完全缺席**：本文点名了 DEA、静电、IPMC、LCE、相变、自修复等，但对 **HASEL（Hydraulically Amplified Self-healing Electrostatic，液压放大自修复静电驱动器）****全文零提及**——我逐字检索原文，HASEL 一词命中 **0 次**。也就是说，这篇综述在驱动器谱系上留了一个显眼的空白；若你的方向涉及 HASEL，本综述给不了抓手，需另查专文（如 Acome 等 *Science* 2018 的 HASEL 原始工作；属本文参考文献之外的补充，非本文引用）。
 3. **DEA 高压问题是老生常谈但无解**：3.1 准确诊断了"力小+高压"，但给的解（杂化、微型化）多是方向性，没有量化指标或基准对比。
 4. **可持续性与功能性的张力被点出但未解**：7.2 说可降解/无氟材料重要，但也承认许多高性能软材料"incompatible with existing additive manufacturing"（5.1）。**环保和性能目前是 trade-off，不是双赢**——原文也只说"may eventually become mutually reinforcing"。
 5. **Sim-to-real 仍是 open problem**：6.2 直言高保真变形仿真"computationally expensive and often fails to fully capture ... interactions"，domain randomization/digital twin 是"may require"级别的方案，没有给出确定性答案。
@@ -362,8 +366,9 @@ Day 52 你装 genkiarm、配 device config；本文 5.3 的"闭环共优化"= �
 - [x] 延伸阅读 15 条，均出自原文 References，作者+年份+期刊+主题，未编卷期页码 ✅
 - [x] 零军事内容 ✅
 - [x] 事实来自原文，模板遮蔽字段标注（以原文为准）✅
-- [x] 未 push 任何内容到 GitHub（仅本地写文件）✅
+- [x] 已推送 GitHub：`paper-analysis-acsnano/README.md`（commit `b61bdefbcec069cfaeec23d6bbe54a84d20a7fee`，blob sha `038ca907560080bbce741ebfc16d3a540d64b36f`）✅
+- [x] 事实复核（脚本对照原文抽取文本）：参考文献 538 篇 ✅、图 1–8 ✅、1950–2050 路线图 ✅、Figure 4a 六维权衡（force output / energy efficiency / bandwidth / durability / manufacturability / portability）✅、Sim-to-real 引文逐字一致 ✅、HASEL 零提及 ✅
 
 ---
 
-*文档生成完毕。路径：`_repo_audit/paper-analysis-acsnano/README.md`*
+*文档生成完毕。本地路径：`_repo_audit/paper-analysis-acsnano/README.md`；GitHub 路径：`paper-analysis-acsnano/README.md`（已推送）。*
