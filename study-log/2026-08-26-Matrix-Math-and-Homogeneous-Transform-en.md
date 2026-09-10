@@ -1,7 +1,7 @@
 # Lecture 13 — Matrix Math & End-Effector Solving (Homogeneous Transform)
 
 > **Meta**
-> - Date: 2026-08-26 (Friday)
+> - Date: 2026-08-26 (Wed)
 > - Lecture / Day: Lecture 13 — Day 13 of the study plan
 > - Plan anchor: `study-plan-60d.md` → **P5 Kinematics (FK)**, course episodes **054–056**
 > - Goal of today: write "joint angle → end pose" as a computable matrix form (homogeneous transform); understand how 4×4 matrices chain all joints in 3D. Builds on Day 12 FK.
