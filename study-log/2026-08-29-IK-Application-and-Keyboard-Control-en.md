@@ -1,7 +1,7 @@
 # Lecture 16 — IK Application & Keyboard Control (Turning IK into "Press Key, Arm Moves")
 
 > **Meta**
-> - Date: 2026-08-29 (Friday)
+> - Date: 2026-08-29 (Sat)
 > - Lecture / Day: Lecture 16 — Day 16 of the study plan
 > - Plan anchor: `study-plan-60d.md` → **P5 Kinematics (IK deployment)**, course episodes **063–067**
 > - Goal of today: chain FK/IK into a live loop "key → target pose → IK → arm moves". The first time kinematics actually "moves". Builds on Day 12–15 FK/IK.
