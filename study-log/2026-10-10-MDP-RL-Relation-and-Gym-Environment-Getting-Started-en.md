@@ -4,14 +4,14 @@
 > **日期**：2026-10-10 ｜ **Day 58 / 60**
 > 本篇为《黑马程序员·具身智能》223 节配套复习笔记，零基础可读、不失专业；含流程图与易错点。
 
-## 一、今日课程（集号映射）
+## 1. Today's Lessons (Episode Mapping)
 
 - **211 MDP and RL relation**: RL is finding the "optimal policy" on an MDP.
 - **212 Install RL environment gym**: install Gym/Gymnasium.
 - **213 FrozenLake environment demo**: the classic RL starter.
 - **214 FrozenLake random-move demo**: see the difference between "wandering" and "learned walking".
 
-## 二、核心知识点（零基础讲透）
+## 2. Core Concepts (Zero-Base)
 
 ### 2.1 RL is finding the optimal policy on an MDP
 - **Policy π**: given state s, decide action a (π(a|s)).
@@ -35,23 +35,23 @@ flowchart LR
     ENV -->|goal G: reward+1| Y[Success]
 ```
 
-## 三、动手操作（跑通才算学会）
+## 3. Hands-On (Run It to Learn It)
 
 1. Install `gymnasium` (`pip install gymnasium`).
 2. Run FrozenLake with a random policy, observe "wandering often falls in holes".
 3. Compare: change the random policy to a dumb rule "always right/down", see success-rate change.
 
-## 四、易错点（前人踩过的坑）
+## 4. Pitfalls (Lessons from Others)
 
 - **Old/new Gym API differ** (`gym` vs `gymnasium`, `step` return changed): check docs for your installed version, don't mix.
 - **Wrong `reset`/`step` return format → loop crashes**: new gymnasium returns 5-tuple `obs, reward, terminated, truncated, info`.
 - **Skipping FrozenLake as "too simple"**: it's the minimal lab for "policy/reward/episode"; later DQN is often validated on it too.
 
-## 五、DEA / 软体机器人交叉链接（轻量）
+## 5. DEA / Soft-Robot Cross-Link (Light)
 
 DEA soft-arm control can also train RL in a Gym-style sim (custom soft-contact env); start with FrozenLake to grasp episodes and reward. Light cross-link.
 
-## 六、今日小结 & 镜子复述 3 分钟
+## 6. Daily Summary & 3-Min Mirror Recap
 
 Today we connect "MDP" and "RL": RL finds the optimal policy π* on an MDP; we run the first RL env with Gymnasium + FrozenLake. Mind the old/new Gym API difference; don't trip on reset/step formats.
 
