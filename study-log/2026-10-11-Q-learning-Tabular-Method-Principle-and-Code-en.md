@@ -4,14 +4,14 @@
 > **日期**：2026-10-11 ｜ **Day 59 / 60**
 > 本篇为《黑马程序员·具身智能》223 节配套复习笔记，零基础可读、不失专业；含流程图与易错点。
 
-## 一、今日课程（集号映射）
+## 1. Today's Lessons (Episode Mapping)
 
 - **215 Init RL q-table**: build a "state × action" table.
 - **216 Q-table update principle**: how Q-values update.
 - **217 Q-table reward backprop update**: reward propagates backward along the path.
 - **218 Final Q-learning code**: write runnable Q-learning.
 
-## 二、核心知识点（零基础讲透）
+## 2. Core Concepts (Zero-Base)
 
 ### 2.1 What the Q-table is
 When states/actions are **discrete and few**, use a table storing "how good is action a in state s":
@@ -42,23 +42,23 @@ Because each step uses "next step's max Q", **the terminal reward propagates bac
 
 ![Q-learning tabular method](assets/qlearning_table.svg)
 
-## 三、动手操作（跑通才算学会）
+## 3. Hands-On (Run It to Learn It)
 
 1. Init FrozenLake's Q-table (num_states × num_actions, all zero).
 2. Write the Q-learning training loop (ε-greedy exploration + the update formula above).
 3. Print the Q-table before/after training; see if Q near the goal rises and the path improves.
 
-## 四、易错点（前人踩过的坑）
+## 4. Pitfalls (Lessons from Others)
 
 - **γ (discount) = 0 → only greedy for now**: terminal reward can't reach far states; they never learn. Usually 0.9~0.99.
 - **ε-greedy too low → never tries new actions, stuck in local optimum**: explore with large ε early, shrink later for exploitation.
 - **Huge state count but still using a table**: when states are continuous/too many, the Q-table can't fit → exactly the motivation for Day60 DQN (neural net replaces table).
 
-## 五、DEA / 软体机器人交叉链接（轻量）
+## 5. DEA / Soft-Robot Cross-Link (Light)
 
 After discretizing DEA soft-posture, you can first try tabular Q-learning; but deformation is continuous, so ultimately DQN/policy-gradient is needed. Light cross-link; main line is tabular Q-learning.
 
-## 六、今日小结 & 镜子复述 3 分钟
+## 6. Daily Summary & 3-Min Mirror Recap
 
 Today we write the first runnable RL algorithm — tabular Q-learning: a Q(s,a) table stores "state-action value", updated by the TD formula, reward backpropagates along the path. Two knobs: γ for future, ε for exploration; too many states → tomorrow's DQN.
 
